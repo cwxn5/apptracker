@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import _ from "lodash";
 import AppCard from "./AppCard";
 import AppCreate from "./AppCreate";
-import { Header } from "semantic-ui-react";
+import { Header, Label } from "semantic-ui-react";
 
 class AppColumn extends React.Component {
   renderAppCards = () => {
@@ -21,8 +21,11 @@ class AppColumn extends React.Component {
     return (
       <div>
         <div className="row">
-          <Header as="h3" block>
+          <Header as="h3" block textAlign="left">
             {this.props.title}
+            <Label circular color="black">
+              {this.props.apps.length}
+            </Label>
           </Header>
         </div>
 

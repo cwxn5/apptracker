@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { Accordion } from "semantic-ui-react";
 import AppEdit from "./AppEdit";
 import AppDelete from "./AppDelete";
+import AppMove from "./AppMove";
 
 class AppCard extends React.Component {
   state = { activeIndex: null };
@@ -23,13 +24,19 @@ class AppCard extends React.Component {
         <p>Resume: {application.resume}</p>
         <p>Notes: {application.notes}</p>
         <div className="ui equal width grid">
-          <div className="column">
+          <div className="three wide column">
             <AppEdit id={this.props.id} application={this.props.application} />
           </div>
-          <div className="column">
+          <div className="three wide column">
             <AppDelete
               id={this.props.id}
               application={this.props.application}
+            />
+          </div>
+          <div className="three wide column">
+            <AppMove
+              id={this.props.id}
+              status={this.props.application.status}
             />
           </div>
         </div>

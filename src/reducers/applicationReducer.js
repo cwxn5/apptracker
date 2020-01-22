@@ -10,6 +10,9 @@ export default (state = {}, action) => {
       return { ...state, [action.id]: action.payload };
     case "EDIT_APPLICATION":
       return { ...state, [action.id]: action.payload };
+    case "MOVE_APPLICATION":
+      const app = state[action.id];
+      return { ...state, [action.id]: { ...app, status: action.payload } };
     case "DELETE_APPLICATION":
       return _.omit(state, action.id);
     default:

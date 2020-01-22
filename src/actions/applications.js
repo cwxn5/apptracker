@@ -3,7 +3,6 @@ import database from "../firebase/firebase";
 export const createApplication = formValues => async (dispatch, getState) => {
   const userId = getState().auth.user.uid;
   const docId = Date.now().toString();
-  console.log(userId);
   database
     .collection("users")
     .doc(`${userId}`)
@@ -57,6 +56,31 @@ export const editApplication = (formValues, docId) => async (
       dispatch({
         type: "EDIT_APPLICATION",
         payload: formValues,
+        id: docId
+      });
+    })
+    .catch(error => {
+      console.log("error", error);
+    });
+};
+export const moveApplication = (status, docId) => async (
+  dispatch,
+  getState
+) => {
+  const userId = getState().auth.user.uid;
+  let appRef = database
+    .collection("users")
+    .doc(`${userId}`)
+    .collection("applications")
+    .doc(docId);
+
+  appRef
+    .update({ status })
+    .then(doc => {
+      console.log("successful move to", status);
+      dispatch({
+        type: "MOVE_APPLICATION",
+        payload: status,
         id: docId
       });
     })
