@@ -12,7 +12,7 @@ class NavBar extends React.Component {
     return (
       <div className="ui menu">
         <div className="item">
-          <i className="big boxes icon" /> AppTracker
+          <i className="big boxes icon" /> <h3>AppTracker</h3>
         </div>
         <div className="right menu">
           <div className="item">{this.props.user.displayName}</div>
