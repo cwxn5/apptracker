@@ -6,6 +6,8 @@ import { columnTypes } from "./columnTypes";
 const AppPageDiv = styled.div`
   display: flex;
   flex-wrap: nowrap;
+  overflow: auto;
+  height: calc(100vh - 72px);
 `;
 
 class AppPage extends React.Component {
