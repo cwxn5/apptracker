@@ -7,13 +7,13 @@ const AppPageDiv = styled.div`
   display: flex;
   flex-wrap: nowrap;
   overflow: auto;
-  height: calc(100vh - 72px);
+  height: calc(100vh - 54px);
 `;
 
 class AppPage extends React.Component {
   renderColumns() {
     return columnTypes.map(column => {
-      return <AppColumn title={column} />;
+      return <AppColumn key={column} title={column} />;
     });
   }
   render() {

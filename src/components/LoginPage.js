@@ -1,6 +1,5 @@
 import React from "react";
 import { connect } from "react-redux";
-import { Button, Icon } from "semantic-ui-react";
 import { startLogin } from "../actions/auth";
 import background from "../images/background.jpg";
 
@@ -29,9 +28,13 @@ export const LoginPage = () => (
         <div className="column">
           <h1 className="ui header">AppTracker</h1>
           <p>Here to help you organize the job hunt.</p>
-          <Button onClick={startLogin} color="google plus">
-            <Icon name="google" /> Login with Google
-          </Button>
+          <button
+            className="ui circular google plus icon button"
+            onClick={startLogin}
+            color="google plus"
+          >
+            <i className="google plus icon" /> Login with Google
+          </button>
         </div>
       </div>
     </div>

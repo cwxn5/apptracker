@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { Button, Modal } from "semantic-ui-react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPlusSquare } from "@fortawesome/free-solid-svg-icons";
+import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import { createApplication } from "../../actions/applications";
 import AppForm from "./AppForm";
 
@@ -14,7 +14,7 @@ class AppCreate extends React.Component {
   renderButton() {
     return (
       <Button onClick={this.handleOpen} fluid color="black">
-        <FontAwesomeIcon icon={faPlusSquare} />
+        <FontAwesomeIcon icon={faPlus} /> Add An Application
       </Button>
     );
   }
@@ -35,7 +35,7 @@ class AppCreate extends React.Component {
       >
         <Modal.Content>
           <div>
-            <h3>New Application</h3>
+            <h1>New Application</h1>
             <AppForm onSubmit={this.onSubmit} />
           </div>
         </Modal.Content>
