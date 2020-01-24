@@ -15,7 +15,9 @@ const LogOutButton = styled.button`
   border-radius: 16px;
   padding: 8px 12px;
 `;
-
+const DarkNavbar = styled(Navbar)`
+  background-color: #1b1c1d;
+`;
 class Header extends React.Component {
   componentDidMount() {}
 
@@ -24,22 +26,22 @@ class Header extends React.Component {
   };
   render() {
     return (
-      <Navbar bg="dark" variant="dark">
+      <DarkNavbar variant="dark">
         <Navbar.Brand>
           <FontAwesomeIcon
             icon={faBoxes}
             size="lg"
             className="d-inline-block align-top"
-          />
+          />{" "}
+          AppTracker
         </Navbar.Brand>
-        <Navbar.Text>AppTracker</Navbar.Text>
         <Navbar.Collapse className="justify-content-end">
           <Navbar.Text>{this.props.user.displayName}</Navbar.Text>
           <LogOutButton onClick={this.onLogoutClick}>
             <FontAwesomeIcon icon={faGoogle} /> Logout
           </LogOutButton>
         </Navbar.Collapse>
-      </Navbar>
+      </DarkNavbar>
     );
   }
 }
