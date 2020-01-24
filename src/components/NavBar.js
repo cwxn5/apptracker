@@ -6,6 +6,7 @@ import Navbar from "react-bootstrap/Navbar";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBoxes } from "@fortawesome/free-solid-svg-icons";
 import { faGoogle } from "@fortawesome/free-brands-svg-icons";
+
 const LogOutButton = styled.button`
   margin-left: 12px;
   background-color: #d34836;
