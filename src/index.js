@@ -8,6 +8,7 @@ import { login, logout } from "./actions/auth";
 import Loader from "./components/Loader";
 import { LoginPage } from "./components/LoginPage";
 import { fetchApplications } from "./actions/applications";
+import "./styles/base.css";
 
 const store = configureStore();
 

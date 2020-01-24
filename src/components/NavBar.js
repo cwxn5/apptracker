@@ -1,6 +1,11 @@
 import React from "react";
 import { connect } from "react-redux";
 import { startLogout } from "../actions/auth";
+import styled from "styled-components";
+
+const WhiteH3 = styled.h3`
+  color: rgba(255, 255, 255, 0.9);
+`;
 
 class NavBar extends React.Component {
   componentDidMount() {}
@@ -10,9 +15,9 @@ class NavBar extends React.Component {
   };
   render() {
     return (
-      <div className="ui menu">
+      <div className="ui attached inverted menu">
         <div className="item">
-          <i className="big boxes icon" /> <h3>AppTracker</h3>
+          <i className="big boxes icon" /> <WhiteH3>AppTracker</WhiteH3>
         </div>
         <div className="right menu">
           <div className="item">{this.props.user.displayName}</div>

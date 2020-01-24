@@ -52,38 +52,22 @@ class AppForm extends React.Component {
         onSubmit={this.props.handleSubmit(this.onSubmit)}
         className="ui form error"
       >
-        <Field
-          name="position"
-          component={this.renderInput}
-          label="Enter Position"
-        />
-        <Field
-          name="company"
-          component={this.renderInput}
-          label="Enter Company"
-        />
-        <Field
-          name="location"
-          component={this.renderInput}
-          label="Enter Location"
-        />
+        <Field name="position" component={this.renderInput} label="Position" />
+        <Field name="company" component={this.renderInput} label="Company" />
+        <Field name="location" component={this.renderInput} label="Location" />
         <Field
           name="date"
           component={this.renderDatePicker}
-          label="Enter Date Applied"
+          label="Date Applied"
         />
         <Field
           name="url"
           component={this.renderInput}
-          label="Enter Job Posting URL"
+          label="Job Posting URL"
         />
-        <Field
-          name="resume"
-          component={this.renderInput}
-          label="Enter Resume Used"
-        />
-        <Field name="notes" component={this.renderInput} label="Enter Notes" />
-        <button className="ui button primary">Submit</button>
+        <Field name="resume" component={this.renderInput} label="Resume Used" />
+        <Field name="notes" component={this.renderInput} label="Notes" />
+        <button className="ui black button">Submit</button>
       </form>
     );
   }

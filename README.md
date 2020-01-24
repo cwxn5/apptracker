@@ -12,9 +12,10 @@ AppTracker was built using React (bootstrapped with [Create React App](https://g
 ### Future Goals
 
 - Search/Filtering
-- Configurable App Status Columns
+- Mobile Support
 - Drag and drop
 - Light/Dark Theme
 - Multiple App Boards
 - Multiple Card View options
 - Resume Storage and Preview
+- Configurable App Status Columns

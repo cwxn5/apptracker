@@ -9,7 +9,7 @@ import { Header, Label } from "semantic-ui-react";
 const ColumnDiv = styled.div`
   min-width: 350px;
   width: 350px;
-  padding: 8px;
+  padding: 16px;
 `;
 
 class AppColumn extends React.Component {
