@@ -1,8 +1,10 @@
 import React from "react";
 import { connect } from "react-redux";
+import { Button, Modal } from "semantic-ui-react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEdit } from "@fortawesome/free-solid-svg-icons";
 import { editApplication } from "../../actions/applications";
 import AppForm from "./AppForm";
-import { Button, Icon, Modal } from "semantic-ui-react";
 
 class AppEdit extends React.Component {
   state = { modalOpen: false };
@@ -12,7 +14,7 @@ class AppEdit extends React.Component {
   renderButton() {
     return (
       <Button onClick={this.handleOpen} fluid color="green">
-        <Icon name="edit outline" />
+        <FontAwesomeIcon icon={faEdit} />
       </Button>
     );
   }

@@ -1,7 +1,9 @@
 import React from "react";
 import { connect } from "react-redux";
+import { Button, Modal } from "semantic-ui-react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTrashAlt } from "@fortawesome/free-solid-svg-icons";
 import { deleteApplication } from "../../actions/applications";
-import { Button, Icon, Modal } from "semantic-ui-react";
 
 class AppDelete extends React.Component {
   state = { modalOpen: false };
@@ -12,7 +14,7 @@ class AppDelete extends React.Component {
   renderButton() {
     return (
       <Button onClick={this.handleOpen} fluid color="red">
-        <Icon name="trash alternate outline" />
+        <FontAwesomeIcon icon={faTrashAlt} />
       </Button>
     );
   }

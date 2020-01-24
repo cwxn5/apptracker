@@ -1,8 +1,10 @@
 import React from "react";
 import { connect } from "react-redux";
+import { Button, Modal } from "semantic-ui-react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPlusSquare } from "@fortawesome/free-solid-svg-icons";
 import { createApplication } from "../../actions/applications";
 import AppForm from "./AppForm";
-import { Button, Icon, Modal } from "semantic-ui-react";
 
 class AppCreate extends React.Component {
   state = { modalOpen: false };
@@ -12,7 +14,7 @@ class AppCreate extends React.Component {
   renderButton() {
     return (
       <Button onClick={this.handleOpen} fluid color="black">
-        <Icon name="plus" />
+        <FontAwesomeIcon icon={faPlusSquare} />
       </Button>
     );
   }

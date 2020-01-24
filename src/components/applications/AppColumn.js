@@ -1,9 +1,16 @@
 import React from "react";
 import { connect } from "react-redux";
 import _ from "lodash";
+import styled from "styled-components";
 import AppCard from "./AppCard";
 import AppCreate from "./AppCreate";
 import { Header, Label } from "semantic-ui-react";
+
+const ColumnDiv = styled.div`
+  min-width: 350px;
+  width: 350px;
+  padding: 8px;
+`;
 
 class AppColumn extends React.Component {
   renderAppCards = () => {
@@ -19,8 +26,8 @@ class AppColumn extends React.Component {
   render() {
     //list of all AppCards that match status of AppColumn
     return (
-      <div>
-        <div className="row">
+      <ColumnDiv>
+        <div className="columnHeader">
           <Header as="h3" block textAlign="left">
             {this.props.title}
             <Label circular color="black">
@@ -29,9 +36,9 @@ class AppColumn extends React.Component {
           </Header>
         </div>
 
-        <div>{this.renderAppCards()}</div>
+        {this.renderAppCards()}
         {this.renderAppCreate(this.props.title)}
-      </div>
+      </ColumnDiv>
     );
   }
 }

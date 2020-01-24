@@ -1,19 +1,43 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Accordion } from "semantic-ui-react";
+import styled from "styled-components";
 import AppEdit from "./AppEdit";
 import AppDelete from "./AppDelete";
 import AppMove from "./AppMove";
+
+const CardTitleDiv = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
+const CardTitleHeader = styled.div`
+  width: 32%;
+`;
+const CardTitleHeaderMiddle = styled(CardTitleHeader)`
+  text-align: center;
+`;
+const CardTitleHeaderRight = styled(CardTitleHeader)`
+  text-align: right;
+`;
+const CardButtons = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
+const CardButton = styled.div`
+  width: auto;
+`;
 
 class AppCard extends React.Component {
   state = { activeIndex: null };
   renderCardTitle = application => {
     return (
-      <div className="ui equal width grid">
-        <div className="column">{application.position}</div>
-        <div className="column">{application.company}</div>
-        <div className="column">{application.location}</div>
-      </div>
+      <CardTitleDiv>
+        <CardTitleHeader>{application.position}</CardTitleHeader>
+        <CardTitleHeaderMiddle>{application.company}</CardTitleHeaderMiddle>
+        <CardTitleHeaderRight style={{ textAlign: "right" }}>
+          {application.location}
+        </CardTitleHeaderRight>
+      </CardTitleDiv>
     );
   };
   renderCardContent = application => {
@@ -23,23 +47,23 @@ class AppCard extends React.Component {
         <p>Site: {application.url}</p>
         <p>Resume: {application.resume}</p>
         <p>Notes: {application.notes}</p>
-        <div className="ui equal width grid">
-          <div className="three wide column">
+        <CardButtons>
+          <CardButton>
             <AppEdit id={this.props.id} application={this.props.application} />
-          </div>
-          <div className="three wide column">
+          </CardButton>
+          <CardButton>
             <AppDelete
               id={this.props.id}
               application={this.props.application}
             />
-          </div>
-          <div className="three wide column">
+          </CardButton>
+          <CardButton>
             <AppMove
               id={this.props.id}
               status={this.props.application.status}
             />
-          </div>
-        </div>
+          </CardButton>
+        </CardButtons>
       </div>
     );
   };
@@ -54,7 +78,7 @@ class AppCard extends React.Component {
     const { activeIndex } = this.state;
     const application = this.props.application;
     return (
-      <Accordion fluid styled>
+      <Accordion styled fluid>
         <Accordion.Title
           active={activeIndex === 0}
           index={0}
