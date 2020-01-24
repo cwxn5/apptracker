@@ -1,8 +1,10 @@
 import React from "react";
 import { connect } from "react-redux";
-import { Button, Modal } from "semantic-ui-react";
+import { Button, Modal } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
+import styled from "styled-components";
+
 import { createApplication } from "../../actions/applications";
 import AppForm from "./AppForm";
 
@@ -11,13 +13,7 @@ class AppCreate extends React.Component {
   handleOpen = () => this.setState({ modalOpen: true });
 
   handleClose = () => this.setState({ modalOpen: false });
-  renderButton() {
-    return (
-      <Button onClick={this.handleOpen} fluid color="black">
-        <FontAwesomeIcon icon={faPlus} /> Add An Application
-      </Button>
-    );
-  }
+
   onSubmit = formValues => {
     this.props.createApplication({
       ...formValues,
@@ -28,18 +24,19 @@ class AppCreate extends React.Component {
 
   render() {
     return (
-      <Modal
-        trigger={this.renderButton()}
-        open={this.state.modalOpen}
-        onClose={this.handleClose}
-      >
-        <Modal.Content>
-          <div>
-            <h1>New Application</h1>
+      <React.Fragment>
+        <Button block variant="dark " onClick={this.handleOpen}>
+          <FontAwesomeIcon icon={faPlus} /> Add An Application
+        </Button>
+        <Modal show={this.state.modalOpen} onHide={this.handleClose}>
+          <Modal.Header>
+            <Modal.Title>New Application</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
             <AppForm onSubmit={this.onSubmit} />
-          </div>
-        </Modal.Content>
-      </Modal>
+          </Modal.Body>
+        </Modal>
+      </React.Fragment>
     );
   }
 }

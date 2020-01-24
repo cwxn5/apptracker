@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { Button, Modal } from "semantic-ui-react";
+import { Button, Modal } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrashAlt } from "@fortawesome/free-solid-svg-icons";
 import { deleteApplication } from "../../actions/applications";
@@ -11,13 +11,7 @@ class AppDelete extends React.Component {
   handleOpen = () => this.setState({ modalOpen: true });
 
   handleClose = () => this.setState({ modalOpen: false });
-  renderButton() {
-    return (
-      <Button onClick={this.handleOpen} fluid color="red">
-        <FontAwesomeIcon icon={faTrashAlt} />
-      </Button>
-    );
-  }
+
   renderAppSummary() {
     const application = this.props.application;
     return (
@@ -47,15 +41,18 @@ class AppDelete extends React.Component {
 
   render() {
     return (
-      <Modal
-        trigger={this.renderButton()}
-        open={this.state.modalOpen}
-        onClose={this.handleClose}
-      >
-        <Modal.Header>Delete this application?</Modal.Header>
-        <Modal.Content>{this.renderAppSummary()}</Modal.Content>
-        <Modal.Actions>{this.renderActions()}</Modal.Actions>
-      </Modal>
+      <React.Fragment>
+        <Button onClick={this.handleOpen} variant="danger">
+          <FontAwesomeIcon icon={faTrashAlt} />
+        </Button>
+        <Modal show={this.state.modalOpen} onHide={this.handleClose}>
+          <Modal.Header>
+            <Modal.Title>Delete this application?</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>{this.renderAppSummary()}</Modal.Body>
+          <Modal.Footer>{this.renderActions()}</Modal.Footer>
+        </Modal>
+      </React.Fragment>
     );
   }
 }

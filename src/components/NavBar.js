@@ -2,12 +2,23 @@ import React from "react";
 import { connect } from "react-redux";
 import { startLogout } from "../actions/auth";
 import styled from "styled-components";
+import Navbar from "react-bootstrap/Navbar";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBoxes } from "@fortawesome/free-solid-svg-icons";
+import { faGoogle } from "@fortawesome/free-brands-svg-icons";
 
-const WhiteH3 = styled.h3`
-  color: rgba(255, 255, 255, 0.9);
+const LogOutButton = styled.button`
+  margin-left: 12px;
+  background-color: #d34836;
+  border: none;
+  color: white;
+  border-radius: 16px;
+  padding: 8px 12px;
 `;
-
-class NavBar extends React.Component {
+const DarkNavbar = styled(Navbar)`
+  background-color: #1b1c1d;
+`;
+class Header extends React.Component {
   componentDidMount() {}
 
   onLogoutClick = () => {
@@ -15,22 +26,22 @@ class NavBar extends React.Component {
   };
   render() {
     return (
-      <div className="ui attached inverted menu">
-        <div className="item">
-          <i className="big boxes icon" /> <WhiteH3>AppTracker</WhiteH3>
-        </div>
-        <div className="right menu">
-          <div className="item">{this.props.user.displayName}</div>
-          <div className="item">
-            <button
-              className="ui circular google plus icon button"
-              onClick={this.onLogoutClick}
-            >
-              <i className="google plus icon"></i> Logout
-            </button>
-          </div>
-        </div>
-      </div>
+      <DarkNavbar variant="dark">
+        <Navbar.Brand>
+          <FontAwesomeIcon
+            icon={faBoxes}
+            size="lg"
+            className="d-inline-block align-top"
+          />{" "}
+          AppTracker
+        </Navbar.Brand>
+        <Navbar.Collapse className="justify-content-end">
+          <Navbar.Text>{this.props.user.displayName}</Navbar.Text>
+          <LogOutButton onClick={this.onLogoutClick}>
+            <FontAwesomeIcon icon={faGoogle} /> Logout
+          </LogOutButton>
+        </Navbar.Collapse>
+      </DarkNavbar>
     );
   }
 }
@@ -39,4 +50,4 @@ const mapStateToProps = (state = {}) => {
   return { user: state.auth.user };
 };
 
-export default connect(mapStateToProps, { startLogout })(NavBar);
+export default connect(mapStateToProps, { startLogout })(Header);

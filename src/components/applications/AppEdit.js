@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { Button, Modal } from "semantic-ui-react";
+import { Button, Modal } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEdit } from "@fortawesome/free-solid-svg-icons";
 import { editApplication } from "../../actions/applications";
@@ -25,21 +25,22 @@ class AppEdit extends React.Component {
 
   render() {
     return (
-      <Modal
-        trigger={this.renderButton()}
-        open={this.state.modalOpen}
-        onClose={this.handleClose}
-      >
-        <Modal.Content>
-          <div>
-            <h3>Edit Application</h3>
+      <React.Fragment>
+        <Button onClick={this.handleOpen} variant="success">
+          <FontAwesomeIcon icon={faEdit} />
+        </Button>
+        <Modal show={this.state.modalOpen} onHide={this.handleClose}>
+          <Modal.Header>
+            <Modal.Title>Edit Application</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
             <AppForm
               initialValues={this.props.application}
               onSubmit={this.onSubmit}
             />
-          </div>
-        </Modal.Content>
-      </Modal>
+          </Modal.Body>
+        </Modal>
+      </React.Fragment>
     );
   }
 }

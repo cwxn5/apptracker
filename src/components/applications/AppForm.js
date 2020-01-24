@@ -41,6 +41,16 @@ class AppForm extends React.Component {
       </div>
     );
   };
+  renderTextArea = ({ input, label, meta }) => {
+    const className = `field ${meta.error && meta.touched ? "error" : ""}`;
+    return (
+      <div className={className}>
+        <label>{label}</label>
+        <textarea {...input} />
+        {this.renderError(meta)}
+      </div>
+    );
+  };
 
   onSubmit = formValues => {
     this.props.onSubmit(formValues);
@@ -66,7 +76,7 @@ class AppForm extends React.Component {
           label="Job Posting URL"
         />
         <Field name="resume" component={this.renderInput} label="Resume Used" />
-        <Field name="notes" component={this.renderInput} label="Notes" />
+        <Field name="notes" component={this.renderTextArea} label="Notes" />
         <button className="ui black button">Submit</button>
       </form>
     );
