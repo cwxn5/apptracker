@@ -28,7 +28,7 @@ class AppMove extends React.Component {
     return (
       <Select
         style={{ width: 120 }}
-        defaultValue={this.props.status}
+        defaultValue="Move App"
         onChange={this.handleChange}
       >
         {this.renderOptions()}
