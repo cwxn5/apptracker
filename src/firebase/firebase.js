@@ -15,27 +15,6 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 
 const database = firebase.firestore();
-// database
-//   .collection("cities")
-//   .doc("LA")
-//   .set({
-//     name: "Los Angeles",
-//     state: "CA",
-//     country: "USA"
-//   })
-//   .then(function() {
-//     console.log("Document successfully written!");
-//   })
-//   .catch(function(error) {
-//     console.error("Error writing document: ", error);
-//   });
-
-// database
-//   .collection("cities")
-//   .get()
-//   .then(collection => {
-//     console.log(collection.docs);
-//   });
 
 const googleAuthProvider = new firebase.auth.GoogleAuthProvider();
 
