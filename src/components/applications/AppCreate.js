@@ -3,7 +3,6 @@ import { connect } from "react-redux";
 import { Button, Modal } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
-import styled from "styled-components";
 
 import { createApplication } from "../../actions/applications";
 import AppForm from "./AppForm";
