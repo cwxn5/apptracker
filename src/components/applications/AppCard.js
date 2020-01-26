@@ -1,17 +1,21 @@
 import React from "react";
 import { connect } from "react-redux";
-import { Accordion } from "semantic-ui-react";
 import { UncontrolledCollapse } from "reactstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCaretRight, faCaretDown } from "@fortawesome/free-solid-svg-icons";
+import { Collapse } from "antd";
+
 import styled from "styled-components";
 import AppEdit from "./AppEdit";
 import AppDelete from "./AppDelete";
 import AppMove from "./AppMove";
 
+const { Panel } = Collapse;
+
 const CardTitleDiv = styled.div`
   display: flex;
   justify-content: space-between;
+  padding: 0 4px;
 `;
 const CardTitleHeader = styled.div`
   width: 32%;
@@ -38,9 +42,12 @@ const NotesButton = styled.button`
     outline: none;
   }
 `;
+const NotesDiv = styled.div`
+  padding: 8px;
+`;
 
 class AppCard extends React.Component {
-  state = { activeIndex: null, notesOpen: false };
+  state = { notesOpen: false };
   renderCardTitle = () => {
     return (
       <CardTitleDiv>
@@ -54,6 +61,21 @@ class AppCard extends React.Component {
       </CardTitleDiv>
     );
   };
+  renderJobUrl = () => {
+    if (this.props.application.url) {
+      return (
+        <p>
+          <a
+            href={this.props.application.url}
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            Job Post
+          </a>
+        </p>
+      );
+    }
+  };
   renderNotes = () => {
     if (this.props.application.notes) {
       return (
@@ -65,7 +87,7 @@ class AppCard extends React.Component {
             Show Notes
           </NotesButton>
           <UncontrolledCollapse toggler="#toggler">
-            {this.props.application.notes}
+            <NotesDiv>{this.props.application.notes}</NotesDiv>
           </UncontrolledCollapse>
         </React.Fragment>
       );
@@ -75,7 +97,7 @@ class AppCard extends React.Component {
     return (
       <div>
         <p>Date Applied: {this.props.application.date}</p>
-        <p>Site: {this.props.application.url}</p>
+        {this.renderJobUrl()}
         <p>Resume: {this.props.application.resume}</p>
         {this.renderNotes()}
         <CardButtons>
@@ -109,21 +131,12 @@ class AppCard extends React.Component {
     this.setState({ activeIndex: newIndex });
   };
   render() {
-    const { activeIndex } = this.state;
-
     return (
-      <Accordion styled fluid>
-        <Accordion.Title
-          active={activeIndex === 0}
-          index={0}
-          onClick={this.handleClick}
-        >
-          {this.renderCardTitle()}
-        </Accordion.Title>
-        <Accordion.Content active={activeIndex === 0}>
+      <Collapse accordion>
+        <Panel showArrow={false} header={this.renderCardTitle()}>
           {this.renderCardContent()}
-        </Accordion.Content>
-      </Accordion>
+        </Panel>
+      </Collapse>
     );
   }
 }

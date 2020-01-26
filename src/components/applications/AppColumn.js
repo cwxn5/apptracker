@@ -12,6 +12,11 @@ const ColumnDiv = styled.div`
   padding: 16px;
 `;
 
+const AppCardsDiv = styled.div`
+  overflow-y: auto;
+  max-height: 80%;
+`;
+
 class AppColumn extends React.Component {
   renderAppCards = () => {
     return this.props.apps.map(app => {
@@ -35,8 +40,7 @@ class AppColumn extends React.Component {
             </Label>
           </Header>
         </div>
-
-        {this.renderAppCards()}
+        <AppCardsDiv>{this.renderAppCards()}</AppCardsDiv>
         {this.renderAppCreate(this.props.title)}
       </ColumnDiv>
     );
