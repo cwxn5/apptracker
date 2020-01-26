@@ -5,6 +5,9 @@ const getFilteredApplications = (applications, { text }, status) => {
     applications,
     value => value.status !== status
   );
+  if (!text) {
+    return columnApplications;
+  }
   const result = _.omitBy(
     columnApplications,
     application =>

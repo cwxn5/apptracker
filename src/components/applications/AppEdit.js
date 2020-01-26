@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { Button, Modal } from "react-bootstrap";
+import { Button, Modal } from "antd";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEdit } from "@fortawesome/free-solid-svg-icons";
 import { editApplication } from "../../actions/applications";
@@ -13,7 +13,7 @@ class AppEdit extends React.Component {
   handleClose = () => this.setState({ modalOpen: false });
   renderButton() {
     return (
-      <Button onClick={this.handleOpen} fluid color="green">
+      <Button onClick={this.handleOpen}>
         <FontAwesomeIcon icon={faEdit} />
       </Button>
     );
@@ -26,19 +26,21 @@ class AppEdit extends React.Component {
   render() {
     return (
       <React.Fragment>
-        <Button onClick={this.handleOpen} variant="success">
+        <Button onClick={this.handleOpen}>
           <FontAwesomeIcon icon={faEdit} />
         </Button>
-        <Modal show={this.state.modalOpen} onHide={this.handleClose}>
-          <Modal.Header>
-            <Modal.Title>Edit Application</Modal.Title>
-          </Modal.Header>
-          <Modal.Body>
-            <AppForm
-              initialValues={this.props.application}
-              onSubmit={this.onSubmit}
-            />
-          </Modal.Body>
+        <Modal
+          visible={this.state.modalOpen}
+          title="Edit Application"
+          onOk={this.handleClose}
+          onCancel={this.handleClose}
+          destroyOnClose={true}
+          footer={null}
+        >
+          <AppForm
+            initialValues={this.props.application}
+            onSubmit={this.onSubmit}
+          />
         </Modal>
       </React.Fragment>
     );

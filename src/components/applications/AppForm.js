@@ -3,6 +3,19 @@ import { Field, reduxForm } from "redux-form";
 import { DatePicker } from "antd";
 import "antd/dist/antd.css";
 import Moment from "moment";
+import styled from "styled-components";
+
+const SubmitButton = styled.button`
+  color: white;
+  background-color: #1b1c1d;
+  width: 100%;
+  height: 40px;
+  font-size: 16px;
+  border-radius: 4px;
+  &:focus {
+    outline: none;
+  }
+`;
 
 class AppForm extends React.Component {
   renderDatePicker = ({ input, label }) => {
@@ -77,7 +90,7 @@ class AppForm extends React.Component {
         />
         <Field name="resume" component={this.renderInput} label="Resume Used" />
         <Field name="notes" component={this.renderTextArea} label="Notes" />
-        <button className="ui black button">Submit</button>
+        <SubmitButton>Submit</SubmitButton>
       </form>
     );
   }
