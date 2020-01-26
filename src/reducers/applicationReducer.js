@@ -7,7 +7,7 @@ export default (state = {}, action) => {
     case "FETCH_APPLICATIONS":
       return { ...state, ...action.payload };
     case "CREATE_APPLICATION":
-      return { ...state, [action.id]: action.payload };
+      return { [action.id]: action.payload, ...state };
     case "EDIT_APPLICATION":
       return { ...state, [action.id]: action.payload };
     case "MOVE_APPLICATION":

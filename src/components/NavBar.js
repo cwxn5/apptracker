@@ -58,7 +58,7 @@ class Header extends React.Component {
 }
 
 const mapStateToProps = (state = {}) => {
-  return { user: state.auth.user, applications: state.applications };
+  return { user: state.auth.user };
 };
 
 export default connect(mapStateToProps, { startLogout, setTextFilter })(Header);

@@ -8,7 +8,7 @@ export const createApplication = formValues => async (dispatch, getState) => {
     .doc(`${userId}`)
     .collection("applications")
     .doc(docId)
-    .set(formValues)
+    .set({ ...formValues, id: docId })
     .then(() => {
       console.log("successful create", formValues);
       dispatch({
@@ -94,13 +94,12 @@ export const fetchApplications = () => async (dispatch, getState) => {
   var userApps = database
     .collection("users")
     .doc(`${userId}`)
-    .collection("applications");
-
+    .collection("applications")
+    .orderBy("id", "desc");
   userApps
     .get()
     .then(function(querySnapshot) {
       querySnapshot.forEach(function(doc) {
-        // doc.data() is never undefined for query doc snapshots
         applications[doc.id] = doc.data();
       });
       dispatch({

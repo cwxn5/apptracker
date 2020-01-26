@@ -15,14 +15,17 @@ const CardTitleDiv = styled.div`
   justify-content: space-between;
   padding: 0 4px;
 `;
-const CardTitleHeader = styled.div`
-  width: 32%;
-`;
-const CardTitleHeaderMiddle = styled(CardTitleHeader)`
-  text-align: center;
-`;
-const CardTitleHeaderRight = styled(CardTitleHeader)`
+const CardTitleHeaderCompany = styled.div`
   text-align: right;
+`;
+const CardTitleHeaderLocation = styled.div`
+  text-align: right;
+  font-size: 10px;
+  color: grey;
+`;
+const CardTitleDate = styled.div`
+  font-size: 10px;
+  color: grey;
 `;
 const CardButtons = styled.div`
   display: flex;
@@ -32,19 +35,35 @@ const CardButtons = styled.div`
 const CardButton = styled.div`
   width: auto;
 `;
+const CollapseWrapper = styled(Collapse)`
+  .ant-collapse-item {
+    .ant-collapse-header {
+      padding: 2px;
+    }
+  }
+  .ant-collapse-item.ant-collapse-no-arrow > .ant-collapse-header {
+    padding: 2px;
+  }
+`;
 
 class AppCard extends React.Component {
   state = { notesOpen: false };
   renderCardTitle = () => {
     return (
       <CardTitleDiv>
-        <CardTitleHeader>{this.props.application.position}</CardTitleHeader>
-        <CardTitleHeaderMiddle>
-          {this.props.application.company}
-        </CardTitleHeaderMiddle>
-        <CardTitleHeaderRight style={{ textAlign: "right" }}>
-          {this.props.application.location}
-        </CardTitleHeaderRight>
+        <div>
+          <div>{this.props.application.position}</div>
+          <CardTitleDate>{this.props.application.date}</CardTitleDate>
+        </div>
+
+        <div>
+          <CardTitleHeaderCompany>
+            {this.props.application.company}
+          </CardTitleHeaderCompany>
+          <CardTitleHeaderLocation>
+            {this.props.application.location}
+          </CardTitleHeaderLocation>
+        </div>
       </CardTitleDiv>
     );
   };
@@ -66,7 +85,6 @@ class AppCard extends React.Component {
   renderCardContent = () => {
     return (
       <div>
-        <p>Date Applied: {this.props.application.date}</p>
         {this.renderJobUrl()}
         <p>Resume: {this.props.application.resume}</p>
         <Notes notes={this.props.application.notes} />
@@ -99,11 +117,11 @@ class AppCard extends React.Component {
   };
   render() {
     return (
-      <Collapse>
+      <CollapseWrapper>
         <Panel showArrow={false} header={this.renderCardTitle()}>
           {this.renderCardContent()}
         </Panel>
-      </Collapse>
+      </CollapseWrapper>
     );
   }
 }
