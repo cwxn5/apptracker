@@ -132,7 +132,7 @@ class AppCard extends React.Component {
   };
   render() {
     return (
-      <Collapse accordion>
+      <Collapse>
         <Panel showArrow={false} header={this.renderCardTitle()}>
           {this.renderCardContent()}
         </Panel>
