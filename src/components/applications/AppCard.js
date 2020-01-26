@@ -1,14 +1,12 @@
 import React from "react";
 import { connect } from "react-redux";
-import { UncontrolledCollapse } from "reactstrap";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCaretRight, faCaretDown } from "@fortawesome/free-solid-svg-icons";
 import { Collapse } from "antd";
-
 import styled from "styled-components";
+
 import AppEdit from "./AppEdit";
 import AppDelete from "./AppDelete";
 import AppMove from "./AppMove";
+import Notes from "./AppCard/Notes";
 
 const { Panel } = Collapse;
 
@@ -33,17 +31,6 @@ const CardButtons = styled.div`
 `;
 const CardButton = styled.div`
   width: auto;
-`;
-const NotesButton = styled.button`
-  border: none;
-  padding: 0;
-  outline: none;
-  &:focus {
-    outline: none;
-  }
-`;
-const NotesDiv = styled.div`
-  padding: 8px;
 `;
 
 class AppCard extends React.Component {
@@ -76,30 +63,13 @@ class AppCard extends React.Component {
       );
     }
   };
-  renderNotes = () => {
-    if (this.props.application.notes) {
-      return (
-        <React.Fragment>
-          <NotesButton onClick={this.handleNotesOpen} id="toggler">
-            <FontAwesomeIcon
-              icon={this.state.notesOpen ? faCaretDown : faCaretRight}
-            />{" "}
-            Show Notes
-          </NotesButton>
-          <UncontrolledCollapse toggler="#toggler">
-            <NotesDiv>{this.props.application.notes}</NotesDiv>
-          </UncontrolledCollapse>
-        </React.Fragment>
-      );
-    }
-  };
   renderCardContent = () => {
     return (
       <div>
         <p>Date Applied: {this.props.application.date}</p>
         {this.renderJobUrl()}
         <p>Resume: {this.props.application.resume}</p>
-        {this.renderNotes()}
+        <Notes notes={this.props.application.notes} />
         <CardButtons>
           <CardButton>
             <AppEdit id={this.props.id} application={this.props.application} />
@@ -119,9 +89,6 @@ class AppCard extends React.Component {
         </CardButtons>
       </div>
     );
-  };
-  handleNotesOpen = () => {
-    this.setState({ notesOpen: !this.state.notesOpen });
   };
   handleClick = (e, titleProps) => {
     const { index } = titleProps;
