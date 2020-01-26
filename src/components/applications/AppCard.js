@@ -1,14 +1,12 @@
 import React from "react";
 import { connect } from "react-redux";
-import { UncontrolledCollapse } from "reactstrap";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCaretRight, faCaretDown } from "@fortawesome/free-solid-svg-icons";
 import { Collapse } from "antd";
-
 import styled from "styled-components";
+
 import AppEdit from "./AppEdit";
 import AppDelete from "./AppDelete";
 import AppMove from "./AppMove";
+import Notes from "./AppCard/Notes";
 
 const { Panel } = Collapse;
 
@@ -17,14 +15,17 @@ const CardTitleDiv = styled.div`
   justify-content: space-between;
   padding: 0 4px;
 `;
-const CardTitleHeader = styled.div`
-  width: 32%;
-`;
-const CardTitleHeaderMiddle = styled(CardTitleHeader)`
-  text-align: center;
-`;
-const CardTitleHeaderRight = styled(CardTitleHeader)`
+const CardTitleHeaderCompany = styled.div`
   text-align: right;
+`;
+const CardTitleHeaderLocation = styled.div`
+  text-align: right;
+  font-size: 10px;
+  color: grey;
+`;
+const CardTitleDate = styled.div`
+  font-size: 10px;
+  color: grey;
 `;
 const CardButtons = styled.div`
   display: flex;
@@ -34,16 +35,15 @@ const CardButtons = styled.div`
 const CardButton = styled.div`
   width: auto;
 `;
-const NotesButton = styled.button`
-  border: none;
-  padding: 0;
-  outline: none;
-  &:focus {
-    outline: none;
+const CollapseWrapper = styled(Collapse)`
+  .ant-collapse-item {
+    .ant-collapse-header {
+      padding: 2px;
+    }
   }
-`;
-const NotesDiv = styled.div`
-  padding: 8px;
+  .ant-collapse-item.ant-collapse-no-arrow > .ant-collapse-header {
+    padding: 2px;
+  }
 `;
 
 class AppCard extends React.Component {
@@ -51,13 +51,19 @@ class AppCard extends React.Component {
   renderCardTitle = () => {
     return (
       <CardTitleDiv>
-        <CardTitleHeader>{this.props.application.position}</CardTitleHeader>
-        <CardTitleHeaderMiddle>
-          {this.props.application.company}
-        </CardTitleHeaderMiddle>
-        <CardTitleHeaderRight style={{ textAlign: "right" }}>
-          {this.props.application.location}
-        </CardTitleHeaderRight>
+        <div>
+          <div>{this.props.application.position}</div>
+          <CardTitleDate>{this.props.application.date}</CardTitleDate>
+        </div>
+
+        <div>
+          <CardTitleHeaderCompany>
+            {this.props.application.company}
+          </CardTitleHeaderCompany>
+          <CardTitleHeaderLocation>
+            {this.props.application.location}
+          </CardTitleHeaderLocation>
+        </div>
       </CardTitleDiv>
     );
   };
@@ -76,30 +82,12 @@ class AppCard extends React.Component {
       );
     }
   };
-  renderNotes = () => {
-    if (this.props.application.notes) {
-      return (
-        <React.Fragment>
-          <NotesButton onClick={this.handleNotesOpen} id="toggler">
-            <FontAwesomeIcon
-              icon={this.state.notesOpen ? faCaretDown : faCaretRight}
-            />{" "}
-            Show Notes
-          </NotesButton>
-          <UncontrolledCollapse toggler="#toggler">
-            <NotesDiv>{this.props.application.notes}</NotesDiv>
-          </UncontrolledCollapse>
-        </React.Fragment>
-      );
-    }
-  };
   renderCardContent = () => {
     return (
       <div>
-        <p>Date Applied: {this.props.application.date}</p>
         {this.renderJobUrl()}
         <p>Resume: {this.props.application.resume}</p>
-        {this.renderNotes()}
+        <Notes notes={this.props.application.notes} />
         <CardButtons>
           <CardButton>
             <AppEdit id={this.props.id} application={this.props.application} />
@@ -120,9 +108,6 @@ class AppCard extends React.Component {
       </div>
     );
   };
-  handleNotesOpen = () => {
-    this.setState({ notesOpen: !this.state.notesOpen });
-  };
   handleClick = (e, titleProps) => {
     const { index } = titleProps;
     const { activeIndex } = this.state;
@@ -132,11 +117,11 @@ class AppCard extends React.Component {
   };
   render() {
     return (
-      <Collapse accordion>
+      <CollapseWrapper>
         <Panel showArrow={false} header={this.renderCardTitle()}>
           {this.renderCardContent()}
         </Panel>
-      </Collapse>
+      </CollapseWrapper>
     );
   }
 }

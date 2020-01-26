@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { Button, Modal } from "react-bootstrap";
+import { Button, Modal } from "antd";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrashAlt } from "@fortawesome/free-solid-svg-icons";
 import { deleteApplication } from "../../actions/applications";
@@ -29,12 +29,10 @@ class AppDelete extends React.Component {
   renderActions() {
     return (
       <React.Fragment>
-        <button onClick={this.handleClose} className="ui button">
-          Cancel
-        </button>
-        <button onClick={this.onDelete} className="ui button negative">
+        <Button onClick={this.handleClose}>Cancel</Button>
+        <Button type="danger" onClick={this.onDelete}>
           Delete
-        </button>
+        </Button>
       </React.Fragment>
     );
   }
@@ -42,15 +40,17 @@ class AppDelete extends React.Component {
   render() {
     return (
       <React.Fragment>
-        <Button onClick={this.handleOpen} variant="danger">
+        <Button onClick={this.handleOpen}>
           <FontAwesomeIcon icon={faTrashAlt} />
         </Button>
-        <Modal show={this.state.modalOpen} onHide={this.handleClose}>
-          <Modal.Header>
-            <Modal.Title>Delete this application?</Modal.Title>
-          </Modal.Header>
-          <Modal.Body>{this.renderAppSummary()}</Modal.Body>
-          <Modal.Footer>{this.renderActions()}</Modal.Footer>
+        <Modal
+          visible={this.state.modalOpen}
+          title="Delete this application?"
+          onOk={this.handleOk}
+          onCancel={this.handleClose}
+          footer={this.renderActions()}
+        >
+          {this.renderAppSummary()}
         </Modal>
       </React.Fragment>
     );

@@ -1,9 +1,9 @@
 import React from "react";
 import { connect } from "react-redux";
-import _ from "lodash";
 import styled from "styled-components";
 import AppCard from "./AppCard";
 import AppCreate from "./AppCreate";
+import getFilteredApplications from "../../selectors/application";
 import { Header, Label } from "semantic-ui-react";
 
 const ColumnDiv = styled.div`
@@ -48,9 +48,10 @@ class AppColumn extends React.Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
-  const applications = _.pickBy(
+  const applications = getFilteredApplications(
     state.applications,
-    (value, key) => value.status === ownProps.title
+    state.filters,
+    ownProps.title
   );
   return {
     apps: Object.keys(applications)

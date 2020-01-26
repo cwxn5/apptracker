@@ -7,7 +7,7 @@ export default (state = {}, action) => {
     case "FETCH_APPLICATIONS":
       return { ...state, ...action.payload };
     case "CREATE_APPLICATION":
-      return { ...state, [action.id]: action.payload };
+      return { [action.id]: action.payload, ...state };
     case "EDIT_APPLICATION":
       return { ...state, [action.id]: action.payload };
     case "MOVE_APPLICATION":
@@ -15,6 +15,8 @@ export default (state = {}, action) => {
       return { ...state, [action.id]: { ...app, status: action.payload } };
     case "DELETE_APPLICATION":
       return _.omit(state, action.id);
+    case "FILTER_APPLICATIONS":
+      return { ...action.payload };
     default:
       return state;
   }
