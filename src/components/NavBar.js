@@ -1,11 +1,14 @@
 import React from "react";
 import { connect } from "react-redux";
-import { startLogout } from "../actions/auth";
 import styled from "styled-components";
 import Navbar from "react-bootstrap/Navbar";
+import { Input } from "antd";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBoxes } from "@fortawesome/free-solid-svg-icons";
 import { faGoogle } from "@fortawesome/free-brands-svg-icons";
+
+import { startLogout } from "../actions/auth";
+import { setTextFilter } from "../actions/filters";
 
 const LogOutButton = styled.button`
   margin-left: 12px;
@@ -18,11 +21,13 @@ const LogOutButton = styled.button`
 const DarkNavbar = styled(Navbar)`
   background-color: #1b1c1d;
 `;
-class Header extends React.Component {
-  componentDidMount() {}
 
+class Header extends React.Component {
   onLogoutClick = () => {
     this.props.startLogout();
+  };
+  onChange = e => {
+    this.props.setTextFilter(e.target.value);
   };
   render() {
     return (
@@ -35,6 +40,12 @@ class Header extends React.Component {
           />{" "}
           AppTracker
         </Navbar.Brand>
+        <Input
+          placeholder="Search by Company"
+          onChange={this.onChange}
+          allowClear
+          style={{ width: 200 }}
+        ></Input>
         <Navbar.Collapse className="justify-content-end">
           <Navbar.Text>{this.props.user.displayName}</Navbar.Text>
           <LogOutButton onClick={this.onLogoutClick}>
@@ -47,7 +58,7 @@ class Header extends React.Component {
 }
 
 const mapStateToProps = (state = {}) => {
-  return { user: state.auth.user };
+  return { user: state.auth.user, applications: state.applications };
 };
 
-export default connect(mapStateToProps, { startLogout })(Header);
+export default connect(mapStateToProps, { startLogout, setTextFilter })(Header);

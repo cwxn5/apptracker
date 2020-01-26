@@ -15,6 +15,8 @@ export default (state = {}, action) => {
       return { ...state, [action.id]: { ...app, status: action.payload } };
     case "DELETE_APPLICATION":
       return _.omit(state, action.id);
+    case "FILTER_APPLICATIONS":
+      return { ...action.payload };
     default:
       return state;
   }
