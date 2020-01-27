@@ -8,7 +8,6 @@ import styled from "styled-components";
 import LocationAutoComplete from "./AppCard/LocationAutoComplete";
 import ResumeAutoComplete from "./AppCard/ResumeAutoComplete";
 
-
 const SubmitButton = styled.button`
   color: white;
   background-color: #1b1c1d;
@@ -57,12 +56,14 @@ class AppForm extends React.Component {
     }
     return (
       <div className={className}>
-        <label>{label}</label>
-        <Checkbox
-          style={{ paddingRight: "6px" }}
-          checked={input.value}
-          onChange={e => input.onChange(e.target.checked)}
-        />
+        <label>
+          <Checkbox
+            style={{ paddingRight: "6px" }}
+            checked={input.value}
+            onChange={e => input.onChange(e.target.checked)}
+          />
+          {label}
+        </label>
       </div>
     );
   };
@@ -126,18 +127,17 @@ class AppForm extends React.Component {
           component={this.renderLocationInput}
           label="Location"
         />
-        <TwoColumnDiv>
-          <Field
-            name="favorite"
-            component={this.renderFavorite}
-            label="Favorite"
-          />
-          <Field
-            name="date"
-            component={this.renderDatePicker}
-            label="Date Applied"
-          />
-        </TwoColumnDiv>
+
+        <Field
+          name="favorite"
+          component={this.renderFavorite}
+          label="Favorite"
+        />
+        <Field
+          name="date"
+          component={this.renderDatePicker}
+          label="Date Applied"
+        />
 
         <Field
           name="url"
