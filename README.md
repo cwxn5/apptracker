@@ -11,7 +11,7 @@ AppTracker was built using React (bootstrapped with [Create React App](https://g
 
 ### Future Goals
 
-- Search/Filtering
+- Advanced Search/Filtering
 - Mobile Support
 - Drag and drop
 - Light/Dark Theme
