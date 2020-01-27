@@ -1,6 +1,8 @@
 import React from "react";
 import { connect } from "react-redux";
-import { Button, Modal } from "antd";
+
+import { Modal } from "antd";
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import styled from "styled-components";
