@@ -1,9 +1,10 @@
 import React from "react";
 import { Field, reduxForm } from "redux-form";
-import { DatePicker } from "antd";
+import { DatePicker, Input, Checkbox } from "antd";
 import "antd/dist/antd.css";
 import Moment from "moment";
 import styled from "styled-components";
+
 import LocationAutoComplete from "./AppCard/LocationAutoComplete";
 import ResumeAutoComplete from "./AppCard/ResumeAutoComplete";
 
@@ -17,6 +18,11 @@ const SubmitButton = styled.button`
   &:focus {
     outline: none;
   }
+`;
+const TwoColumnDiv = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
 `;
 
 class AppForm extends React.Component {
@@ -39,20 +45,32 @@ class AppForm extends React.Component {
   };
   renderError({ error, touched }) {
     if (touched && error) {
-      return (
-        <div className="ui error message">
-          <div className="header">{error}</div>
-        </div>
-      );
+      return " " + error;
     }
+    return "";
   }
+  renderFavorite = ({ input, label, meta }) => {
+    const className = `field ${meta.error && meta.touched ? "error" : ""}`;
+    if (!input.value) {
+      input.value = false;
+    }
+    return (
+      <div className={className}>
+        <label>{label}</label>
+        <Checkbox
+          style={{ paddingRight: "6px" }}
+          checked={input.value}
+          onChange={e => input.onChange(e.target.checked)}
+        />
+      </div>
+    );
+  };
   renderInput = ({ input, label, meta }) => {
     const className = `field ${meta.error && meta.touched ? "error" : ""}`;
     return (
       <div className={className}>
-        <label>{label}</label>
-        <input {...input} autoComplete="off" />
-        {this.renderError(meta)}
+        <label>{label + this.renderError(meta)}</label>
+        <Input {...input} autoComplete="off" />
       </div>
     );
   };
@@ -60,9 +78,12 @@ class AppForm extends React.Component {
     const className = `field ${meta.error && meta.touched ? "error" : ""}`;
     return (
       <div className={className}>
-        <label>{label}</label>
+        <label>
+          {label}
+          {this.renderError(meta)}
+        </label>
+
         <LocationAutoComplete input={input} />
-        {this.renderError(meta)}
       </div>
     );
   };
@@ -104,11 +125,19 @@ class AppForm extends React.Component {
           component={this.renderLocationInput}
           label="Location"
         />
-        <Field
-          name="date"
-          component={this.renderDatePicker}
-          label="Date Applied"
-        />
+        <TwoColumnDiv>
+          <Field
+            name="favorite"
+            component={this.renderFavorite}
+            label="Favorite"
+          />
+          <Field
+            name="date"
+            component={this.renderDatePicker}
+            label="Date Applied"
+          />
+        </TwoColumnDiv>
+
         <Field
           name="url"
           component={this.renderInput}
@@ -129,13 +158,13 @@ class AppForm extends React.Component {
 const validate = formValues => {
   const errors = {};
   if (!formValues.position) {
-    errors.position = "You must enter a position";
+    errors.position = "Required";
   }
   if (!formValues.company) {
-    errors.company = "You must enter a company";
+    errors.company = "Required";
   }
   if (!formValues.location) {
-    errors.location = "You must enter a location";
+    errors.location = "Required";
   }
   return errors;
 };

@@ -1,12 +1,12 @@
 import React from "react";
 import { connect } from "react-redux";
-import { Modal } from "antd";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus } from "@fortawesome/free-solid-svg-icons";
 import styled from "styled-components";
 
 import { createApplication } from "../../actions/applications";
 import AppForm from "./AppForm";
+import { ModalWrapper } from "../../styles/ModalWrapper";
 
 const CreateButton = styled.button`
   color: white;
@@ -41,7 +41,7 @@ class AppCreate extends React.Component {
         <CreateButton block onClick={this.showModal}>
           <FontAwesomeIcon icon={faPlus} /> Add An Application
         </CreateButton>
-        <Modal
+        <ModalWrapper
           visible={this.state.visible}
           title="New Application"
           onOk={this.handleOk}
@@ -50,7 +50,7 @@ class AppCreate extends React.Component {
           footer={null}
         >
           <AppForm onSubmit={this.onSubmit} />
-        </Modal>
+        </ModalWrapper>
       </React.Fragment>
     );
   }
