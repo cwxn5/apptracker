@@ -19,11 +19,6 @@ const SubmitButton = styled.button`
     outline: none;
   }
 `;
-const TwoColumnDiv = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-`;
 
 class AppForm extends React.Component {
   renderDatePicker = ({ input, label }) => {

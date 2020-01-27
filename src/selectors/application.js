@@ -1,6 +1,6 @@
 import _ from "lodash";
 
-const getFilteredApplications = (applications, { text }, status) => {
+const getFilteredApplications = (applications, { text, option }, status) => {
   let columnApplications = _.omitBy(
     applications,
     value => value.status !== status
@@ -8,11 +8,20 @@ const getFilteredApplications = (applications, { text }, status) => {
   if (!text) {
     return columnApplications;
   }
-  const result = _.omitBy(
-    columnApplications,
-    application =>
-      !application.company.toLowerCase().includes(text.toLowerCase())
-  );
+  let result = {};
+  if (option === "location") {
+    result = _.omitBy(
+      columnApplications,
+      application =>
+        !application.location.toLowerCase().startsWith(text.toLowerCase())
+    );
+  } else {
+    result = _.omitBy(
+      columnApplications,
+      application =>
+        !application.company.toLowerCase().includes(text.toLowerCase())
+    );
+  }
   return result;
 };
 
