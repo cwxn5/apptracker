@@ -1,10 +1,13 @@
 import React from "react";
 import { connect } from "react-redux";
 import styled from "styled-components";
+
+import { Header, Label } from "semantic-ui-react";
+import { Switch } from "antd";
+
 import AppCard from "./AppCard";
 import AppCreate from "./AppCreate";
 import getFilteredApplications from "../../selectors/application";
-import { Header, Label } from "semantic-ui-react";
 
 const ColumnDiv = styled.div`
   min-width: 350px;
@@ -18,14 +21,33 @@ const AppCardsDiv = styled.div`
 `;
 
 class AppColumn extends React.Component {
+  state = { showCards: false };
   renderAppCards = () => {
-    return this.props.apps.map(app => {
-      return <AppCard key={app} id={app} />;
-    });
+    if (this.props.title !== "Rejected" || this.state.showCards) {
+      return this.props.apps.map(app => {
+        return <AppCard key={app} id={app} />;
+      });
+    }
   };
-  renderAppCreate = title => {
-    if (title === "Applied") {
-      return <AppCreate status={title} />;
+  renderAppCreate = () => {
+    if (this.props.title === "Applied") {
+      return <AppCreate status={this.props.title} />;
+    }
+  };
+  handleShowRejectedAppsChange = () => {
+    this.setState({ showCards: !this.state.showCards });
+  };
+  renderShowRejectedApps = () => {
+    if (this.props.title === "Rejected") {
+      return (
+        <div style={{ float: "right", textAlign: "right" }}>
+          <Switch
+            onClick={this.handleShowRejectedAppsChange}
+            checked={this.state.showCards}
+            size="small"
+          />
+        </div>
+      );
     }
   };
   render() {
@@ -38,10 +60,11 @@ class AppColumn extends React.Component {
             <Label circular color="black">
               {this.props.apps.length}
             </Label>
+            {this.renderShowRejectedApps()}
           </Header>
         </div>
         <AppCardsDiv>{this.renderAppCards()}</AppCardsDiv>
-        {this.renderAppCreate(this.props.title)}
+        {this.renderAppCreate()}
       </ColumnDiv>
     );
   }

@@ -1,10 +1,11 @@
 import React from "react";
 import { connect } from "react-redux";
-import { Button, Modal } from "antd";
+import { Button } from "antd";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEdit } from "@fortawesome/free-solid-svg-icons";
 import { editApplication } from "../../actions/applications";
 import AppForm from "./AppForm";
+import { ModalWrapper } from "../../styles/ModalWrapper";
 
 class AppEdit extends React.Component {
   state = { modalOpen: false };
@@ -29,7 +30,7 @@ class AppEdit extends React.Component {
         <Button onClick={this.handleOpen}>
           <FontAwesomeIcon icon={faEdit} />
         </Button>
-        <Modal
+        <ModalWrapper
           visible={this.state.modalOpen}
           title="Edit Application"
           onOk={this.handleClose}
@@ -41,7 +42,7 @@ class AppEdit extends React.Component {
             initialValues={this.props.application}
             onSubmit={this.onSubmit}
           />
-        </Modal>
+        </ModalWrapper>
       </React.Fragment>
     );
   }
