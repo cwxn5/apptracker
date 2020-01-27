@@ -8,6 +8,7 @@ import styled from "styled-components";
 import LocationAutoComplete from "./AppCard/LocationAutoComplete";
 import ResumeAutoComplete from "./AppCard/ResumeAutoComplete";
 
+
 const SubmitButton = styled.button`
   color: white;
   background-color: #1b1c1d;
