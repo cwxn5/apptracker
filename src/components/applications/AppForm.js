@@ -4,8 +4,10 @@ import { DatePicker } from "antd";
 import "antd/dist/antd.css";
 import Moment from "moment";
 import styled from "styled-components";
+
 import LocationAutoComplete from "./AppCard/LocationAutoComplete";
 import ResumeAutoComplete from "./AppCard/ResumeAutoComplete";
+
 
 const SubmitButton = styled.button`
   color: white;
