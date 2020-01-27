@@ -39,7 +39,7 @@ export const LoginPage = () => (
       <div className="ui centered middle aligned grid">
         <div className="column">
           <h1 className="ui header">AppTracker</h1>
-          <P>Here to help you organize the job hunt.</P>
+          <P>Here to help organize the job hunt.</P>
           <LogInButton onClick={startLogin}>
             <FontAwesomeIcon icon={faGoogle} /> Login with Google
           </LogInButton>

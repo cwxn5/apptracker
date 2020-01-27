@@ -4,6 +4,8 @@ import { DatePicker } from "antd";
 import "antd/dist/antd.css";
 import Moment from "moment";
 import styled from "styled-components";
+import LocationAutoComplete from "./AppCard/LocationAutoComplete";
+import ResumeAutoComplete from "./AppCard/ResumeAutoComplete";
 
 const SubmitButton = styled.button`
   color: white;
@@ -54,6 +56,26 @@ class AppForm extends React.Component {
       </div>
     );
   };
+  renderLocationInput = ({ input, label, meta }) => {
+    const className = `field ${meta.error && meta.touched ? "error" : ""}`;
+    return (
+      <div className={className}>
+        <label>{label}</label>
+        <LocationAutoComplete input={input} />
+        {this.renderError(meta)}
+      </div>
+    );
+  };
+  renderResumeInput = ({ input, label, meta }) => {
+    const className = `field ${meta.error && meta.touched ? "error" : ""}`;
+    return (
+      <div className={className}>
+        <label>{label}</label>
+        <ResumeAutoComplete input={input} />
+        {this.renderError(meta)}
+      </div>
+    );
+  };
   renderTextArea = ({ input, label, meta }) => {
     const className = `field ${meta.error && meta.touched ? "error" : ""}`;
     return (
@@ -77,7 +99,11 @@ class AppForm extends React.Component {
       >
         <Field name="position" component={this.renderInput} label="Position" />
         <Field name="company" component={this.renderInput} label="Company" />
-        <Field name="location" component={this.renderInput} label="Location" />
+        <Field
+          name="location"
+          component={this.renderLocationInput}
+          label="Location"
+        />
         <Field
           name="date"
           component={this.renderDatePicker}
@@ -88,7 +114,11 @@ class AppForm extends React.Component {
           component={this.renderInput}
           label="Job Posting URL"
         />
-        <Field name="resume" component={this.renderInput} label="Resume Used" />
+        <Field
+          name="resume"
+          component={this.renderResumeInput}
+          label="Resume Used"
+        />
         <Field name="notes" component={this.renderTextArea} label="Notes" />
         <SubmitButton>Submit</SubmitButton>
       </form>
