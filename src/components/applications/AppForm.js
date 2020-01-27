@@ -94,6 +94,26 @@ class AppForm extends React.Component {
       </div>
     );
   };
+  renderLocationInput = ({ input, label, meta }) => {
+    const className = `field ${meta.error && meta.touched ? "error" : ""}`;
+    return (
+      <div className={className}>
+        <label>{label}</label>
+        <LocationAutoComplete input={input} />
+        {this.renderError(meta)}
+      </div>
+    );
+  };
+  renderResumeInput = ({ input, label, meta }) => {
+    const className = `field ${meta.error && meta.touched ? "error" : ""}`;
+    return (
+      <div className={className}>
+        <label>{label}</label>
+        <ResumeAutoComplete input={input} />
+        {this.renderError(meta)}
+      </div>
+    );
+  };
   renderTextArea = ({ input, label, meta }) => {
     const className = `field ${meta.error && meta.touched ? "error" : ""}`;
     return (
@@ -122,7 +142,6 @@ class AppForm extends React.Component {
           component={this.renderLocationInput}
           label="Location"
         />
-
         <Field
           name="favorite"
           component={this.renderFavorite}
