@@ -4,7 +4,7 @@ import _ from "lodash";
 import moment from "moment";
 import { Drawer, Statistic } from "antd";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faInfoCircle } from "@fortawesome/free-solid-svg-icons";
+import { faChartBar } from "@fortawesome/free-solid-svg-icons";
 import styled from "styled-components";
 
 const IconWrapper = styled(FontAwesomeIcon)`
@@ -88,7 +88,7 @@ class StatsDrawer extends React.Component {
     return (
       <div>
         <IconWrapper
-          icon={faInfoCircle}
+          icon={faChartBar}
           size="2x"
           inverse
           pull="left"
