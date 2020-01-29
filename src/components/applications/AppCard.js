@@ -17,6 +17,10 @@ const CardTitleDiv = styled.div`
 `;
 const CardTitleHeaderCompany = styled.div`
   text-align: right;
+  font-weight: ${props => (props.favorite ? "bold" : "normal")};
+`;
+const CardTitleHeaderPosition = styled.div`
+  font-weight: ${props => (props.favorite ? "bold" : "normal")};
 `;
 const CardTitleHeaderLocation = styled.div`
   text-align: right;
@@ -52,12 +56,14 @@ class AppCard extends React.Component {
     return (
       <CardTitleDiv>
         <div>
-          <div>{this.props.application.position}</div>
+          <CardTitleHeaderPosition favorite={this.props.application.favorite}>
+            {this.props.application.position}
+          </CardTitleHeaderPosition>
           <CardTitleDate>{this.props.application.date}</CardTitleDate>
         </div>
 
         <div>
-          <CardTitleHeaderCompany>
+          <CardTitleHeaderCompany favorite={this.props.application.favorite}>
             {this.props.application.company}
           </CardTitleHeaderCompany>
           <CardTitleHeaderLocation>
