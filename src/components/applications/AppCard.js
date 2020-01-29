@@ -34,7 +34,7 @@ const CardTitleDate = styled.div`
 const CardButtons = styled.div`
   display: flex;
   justify-content: space-between;
-  margin-top: 1rem;
+  padding-top: 8px;
 `;
 const CardButton = styled.div`
   width: auto;
@@ -48,6 +48,11 @@ const CollapseWrapper = styled(Collapse)`
   .ant-collapse-item.ant-collapse-no-arrow > .ant-collapse-header {
     padding: 2px;
   }
+`;
+
+const TwoColumnDiv = styled.div`
+  display: flex;
+  justify-content: space-between;
 `;
 
 class AppCard extends React.Component {
@@ -76,23 +81,23 @@ class AppCard extends React.Component {
   renderJobUrl = () => {
     if (this.props.application.url) {
       return (
-        <p>
-          <a
-            href={this.props.application.url}
-            rel="noopener noreferrer"
-            target="_blank"
-          >
-            Job Post
-          </a>
-        </p>
+        <a
+          href={this.props.application.url}
+          rel="noopener noreferrer"
+          target="_blank"
+        >
+          Job Post
+        </a>
       );
     }
   };
   renderCardContent = () => {
     return (
       <div>
-        {this.renderJobUrl()}
-        <p>Resume: {this.props.application.resume}</p>
+        <TwoColumnDiv>
+          {this.renderJobUrl()}
+          <div>Resume: {this.props.application.resume}</div>
+        </TwoColumnDiv>
         <Notes notes={this.props.application.notes} />
         <CardButtons>
           <CardButton>
