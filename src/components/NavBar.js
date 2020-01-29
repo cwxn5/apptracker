@@ -7,6 +7,8 @@ import { faBoxes } from "@fortawesome/free-solid-svg-icons";
 import { faGoogle } from "@fortawesome/free-brands-svg-icons";
 
 import Search from "./Search";
+import StatsDrawer from "./StatsDrawer";
+
 import { startLogout } from "../actions/auth";
 
 const LogOutButton = styled.button`
@@ -19,6 +21,9 @@ const LogOutButton = styled.button`
 `;
 const DarkNavbar = styled(Navbar)`
   background-color: #1b1c1d;
+  .Collapse {
+    display: flex;
+  }
 `;
 
 class Header extends React.Component {
@@ -39,6 +44,7 @@ class Header extends React.Component {
         </Navbar.Brand>
         <Search />
         <Navbar.Collapse className="justify-content-end">
+          <StatsDrawer />
           <Navbar.Text>{this.props.user.displayName}</Navbar.Text>
           <LogOutButton onClick={this.onLogoutClick}>
             <FontAwesomeIcon icon={faGoogle} /> Logout

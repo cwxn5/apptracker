@@ -1,5 +1,10 @@
 import React from "react";
 import { Modal, Button } from "antd";
+import styled from "styled-components";
+
+const NotesWrapper = styled.div`
+  padding-top: 4px;
+`;
 
 class Notes extends React.Component {
   state = { visible: false };
@@ -24,9 +29,9 @@ class Notes extends React.Component {
   render() {
     if (this.props.notes) {
       return (
-        <div>
+        <NotesWrapper>
           <Button type="dashed" onClick={this.showModal}>
-            Show Notes
+            Notes
           </Button>
           <Modal
             title="Notes"
@@ -37,7 +42,7 @@ class Notes extends React.Component {
           >
             <p>{this.props.notes}</p>
           </Modal>
-        </div>
+        </NotesWrapper>
       );
     } else {
       return null;

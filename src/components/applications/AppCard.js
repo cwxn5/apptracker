@@ -17,6 +17,10 @@ const CardTitleDiv = styled.div`
 `;
 const CardTitleHeaderCompany = styled.div`
   text-align: right;
+  font-weight: ${props => (props.favorite ? "bold" : "normal")};
+`;
+const CardTitleHeaderPosition = styled.div`
+  font-weight: ${props => (props.favorite ? "bold" : "normal")};
 `;
 const CardTitleHeaderLocation = styled.div`
   text-align: right;
@@ -30,7 +34,7 @@ const CardTitleDate = styled.div`
 const CardButtons = styled.div`
   display: flex;
   justify-content: space-between;
-  margin-top: 1rem;
+  padding-top: 8px;
 `;
 const CardButton = styled.div`
   width: auto;
@@ -46,18 +50,25 @@ const CollapseWrapper = styled(Collapse)`
   }
 `;
 
+const TwoColumnDiv = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
+
 class AppCard extends React.Component {
   state = { notesOpen: false };
   renderCardTitle = () => {
     return (
       <CardTitleDiv>
         <div>
-          <div>{this.props.application.position}</div>
+          <CardTitleHeaderPosition favorite={this.props.application.favorite}>
+            {this.props.application.position}
+          </CardTitleHeaderPosition>
           <CardTitleDate>{this.props.application.date}</CardTitleDate>
         </div>
 
         <div>
-          <CardTitleHeaderCompany>
+          <CardTitleHeaderCompany favorite={this.props.application.favorite}>
             {this.props.application.company}
           </CardTitleHeaderCompany>
           <CardTitleHeaderLocation>
@@ -70,23 +81,23 @@ class AppCard extends React.Component {
   renderJobUrl = () => {
     if (this.props.application.url) {
       return (
-        <p>
-          <a
-            href={this.props.application.url}
-            rel="noopener noreferrer"
-            target="_blank"
-          >
-            Job Post
-          </a>
-        </p>
+        <a
+          href={this.props.application.url}
+          rel="noopener noreferrer"
+          target="_blank"
+        >
+          Job Post
+        </a>
       );
     }
   };
   renderCardContent = () => {
     return (
       <div>
-        {this.renderJobUrl()}
-        <p>Resume: {this.props.application.resume}</p>
+        <TwoColumnDiv>
+          {this.renderJobUrl()}
+          <div>Resume: {this.props.application.resume}</div>
+        </TwoColumnDiv>
         <Notes notes={this.props.application.notes} />
         <CardButtons>
           <CardButton>

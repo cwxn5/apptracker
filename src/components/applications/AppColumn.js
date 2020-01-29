@@ -4,6 +4,8 @@ import styled from "styled-components";
 
 import { Header, Label } from "semantic-ui-react";
 import { Switch } from "antd";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 
 import AppCard from "./AppCard";
 import AppCreate from "./AppCreate";
@@ -13,6 +15,10 @@ const ColumnDiv = styled.div`
   min-width: 350px;
   width: 350px;
   padding: 16px;
+`;
+const RightAlignItem = styled.div`
+  float: right;
+  text-align: right;
 `;
 
 const AppCardsDiv = styled.div`
@@ -40,13 +46,14 @@ class AppColumn extends React.Component {
   renderShowRejectedApps = () => {
     if (this.props.title === "Rejected") {
       return (
-        <div style={{ float: "right", textAlign: "right" }}>
+        <RightAlignItem>
           <Switch
             onClick={this.handleShowRejectedAppsChange}
             checked={this.state.showCards}
-            size="small"
+            checkedChildren={<FontAwesomeIcon icon={faEye} />}
+            unCheckedChildren={<FontAwesomeIcon icon={faEyeSlash} />}
           />
-        </div>
+        </RightAlignItem>
       );
     }
   };
