@@ -8,6 +8,7 @@ import { faGoogle } from "@fortawesome/free-brands-svg-icons";
 
 import Search from "./Search";
 import StatsDrawer from "./StatsDrawer";
+
 import { startLogout } from "../actions/auth";
 
 const LogOutButton = styled.button`
