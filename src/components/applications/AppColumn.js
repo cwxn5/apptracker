@@ -1,61 +1,13 @@
 import React from "react";
 import { connect } from "react-redux";
-import styled from "styled-components";
-import { Switch, Badge } from "antd";
+import { Switch } from "antd";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 
 import AppCard from "./AppCard";
 import AppCreate from "./AppCreate";
 import getFilteredApplications from "../../selectors/application";
-
-const ColumnCountBadge = styled.div`
-  border-radius: 50%;
-  width: 27px;
-  height: 27px;
-  padding: 3px;
-  margin-left: 8px;
-  font-weight: bold;
-  background: black;
-  color: white;
-  text-align: center;
-`;
-const ColumnDiv = styled.div`
-  min-width: 350px;
-  width: 350px;
-  height: fit-content;
-  margin: 16px;
-  padding: 8px;
-  background-color: #f3f4f5;
-  border: 1px solid #d9d9d9;
-  border-radius: 4px;
-`;
-const ColumnHeader = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding-bottom: ${props => (props.cards ? "8px" : "0")};
-`;
-const ColumnHeaderTitle = styled.div`
-  display: flex;
-  align-items: center;
-`;
-const RightAlignItem = styled.div`
-  float: right;
-  text-align: right;
-`;
-const AppCardsDiv = styled.div`
-  border: ${props => (props.showCardAppsBorder ? "1px solid #d9d9d9" : "none")};
-  border-radius: 4px;
-  overflow-y: auto;
-  max-height: 75vh;
-`;
-const Title = styled.div`
-  font-weight: bold;
-  font-size: 20px;
-  color: black;
-  padding-left: 8px;
-`;
+import * as Style from "../../styles/AppCard";
 
 class AppColumn extends React.Component {
   state = { showCards: false };
@@ -77,43 +29,44 @@ class AppColumn extends React.Component {
   renderShowRejectedApps = () => {
     if (this.props.title === "Rejected") {
       return (
-        <RightAlignItem>
+        <Style.RightAlignItem>
           <Switch
             onClick={this.handleShowRejectedAppsChange}
             checked={this.state.showCards}
             checkedChildren={<FontAwesomeIcon icon={faEye} />}
             unCheckedChildren={<FontAwesomeIcon icon={faEyeSlash} />}
           />
-        </RightAlignItem>
+        </Style.RightAlignItem>
       );
     }
   };
   render() {
     //list of all AppCards that match status of AppColumn
+    //<ColumnCountBadge>{this.props.apps.length}</ColumnCountBadge>
     return (
-      <ColumnDiv>
-        <ColumnHeader
+      <Style.ColumnDiv>
+        <Style.ColumnHeader
           cards={
             (this.props.title !== "Rejected" || this.state.showCards) &&
             this.props.apps.length > 0
           }
         >
-          <ColumnHeaderTitle>
-            <Title>{this.props.title}</Title>
-            <ColumnCountBadge>{this.props.apps.length}</ColumnCountBadge>
-          </ColumnHeaderTitle>
+          <Style.ColumnHeaderTitle>
+            <Style.Title>{this.props.title}</Style.Title>
+            <Style.AvatarWrapper>{this.props.apps.length}</Style.AvatarWrapper>
+          </Style.ColumnHeaderTitle>
           {this.renderShowRejectedApps()}
-        </ColumnHeader>
-        <AppCardsDiv
+        </Style.ColumnHeader>
+        <Style.AppCardsDiv
           showCardAppsBorder={
             (this.props.title !== "Rejected" || this.state.showCards) &&
             this.props.apps.length > 0
           }
         >
           {this.renderAppCards()}
-        </AppCardsDiv>
+        </Style.AppCardsDiv>
         {this.renderAppCreate()}
-      </ColumnDiv>
+      </Style.ColumnDiv>
     );
   }
 }
