@@ -1,8 +1,5 @@
 import React from "react";
 import { connect } from "react-redux";
-import styled from "styled-components";
-
-import { Header, Label } from "semantic-ui-react";
 import { Switch } from "antd";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
@@ -10,21 +7,7 @@ import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import AppCard from "./AppCard";
 import AppCreate from "./AppCreate";
 import getFilteredApplications from "../../selectors/application";
-
-const ColumnDiv = styled.div`
-  min-width: 350px;
-  width: 350px;
-  padding: 16px;
-`;
-const RightAlignItem = styled.div`
-  float: right;
-  text-align: right;
-`;
-
-const AppCardsDiv = styled.div`
-  overflow-y: auto;
-  max-height: 80%;
-`;
+import * as Style from "../../styles/AppCard";
 
 class AppColumn extends React.Component {
   state = { showCards: false };
@@ -46,33 +29,44 @@ class AppColumn extends React.Component {
   renderShowRejectedApps = () => {
     if (this.props.title === "Rejected") {
       return (
-        <RightAlignItem>
+        <Style.RightAlignItem>
           <Switch
             onClick={this.handleShowRejectedAppsChange}
             checked={this.state.showCards}
             checkedChildren={<FontAwesomeIcon icon={faEye} />}
             unCheckedChildren={<FontAwesomeIcon icon={faEyeSlash} />}
           />
-        </RightAlignItem>
+        </Style.RightAlignItem>
       );
     }
   };
   render() {
     //list of all AppCards that match status of AppColumn
+    //<ColumnCountBadge>{this.props.apps.length}</ColumnCountBadge>
     return (
-      <ColumnDiv>
-        <div className="columnHeader">
-          <Header as="h3" block textAlign="left">
-            {this.props.title}
-            <Label circular color="black">
-              {this.props.apps.length}
-            </Label>
-            {this.renderShowRejectedApps()}
-          </Header>
-        </div>
-        <AppCardsDiv>{this.renderAppCards()}</AppCardsDiv>
+      <Style.ColumnDiv>
+        <Style.ColumnHeader
+          cards={
+            (this.props.title !== "Rejected" || this.state.showCards) &&
+            this.props.apps.length > 0
+          }
+        >
+          <Style.ColumnHeaderTitle>
+            <Style.Title>{this.props.title}</Style.Title>
+            <Style.AvatarWrapper>{this.props.apps.length}</Style.AvatarWrapper>
+          </Style.ColumnHeaderTitle>
+          {this.renderShowRejectedApps()}
+        </Style.ColumnHeader>
+        <Style.AppCardsDiv
+          showCardAppsBorder={
+            (this.props.title !== "Rejected" || this.state.showCards) &&
+            this.props.apps.length > 0
+          }
+        >
+          {this.renderAppCards()}
+        </Style.AppCardsDiv>
         {this.renderAppCreate()}
-      </ColumnDiv>
+      </Style.ColumnDiv>
     );
   }
 }
