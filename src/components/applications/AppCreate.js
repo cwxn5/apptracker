@@ -14,6 +14,7 @@ const CreateButton = styled.button`
   width: 100%;
   height: 40px;
   font-size: 16px;
+  border: none;
   border-radius: 4px;
   &:focus {
     outline: none;

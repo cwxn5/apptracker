@@ -27,7 +27,7 @@ class AppColumn extends React.Component {
     this.setState({ showCards: !this.state.showCards });
   };
   renderShowRejectedApps = () => {
-    if (this.props.title === "Rejected") {
+    if (this.props.title === "Rejected" && this.props.apps.length) {
       return (
         <Style.RightAlignItem>
           <Switch
