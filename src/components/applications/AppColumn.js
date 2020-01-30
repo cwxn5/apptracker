@@ -48,7 +48,7 @@ class AppColumn extends React.Component {
         <Style.ColumnHeader
           cards={
             (this.props.title !== "Rejected" || this.state.showCards) &&
-            this.props.apps.length > 0
+            (this.props.apps.length > 0 || this.props.title === "Applied")
           }
         >
           <Style.ColumnHeaderTitle>
