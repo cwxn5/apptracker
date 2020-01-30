@@ -58,8 +58,8 @@ class AppCard extends React.Component {
           {this.renderJobUrl()}
           <div>Resume: {this.props.application.resume}</div>
         </Style.TwoColumnDiv>
-        <Notes notes={this.props.application.notes} />
         <Style.CardButtons>
+          <Notes notes={this.props.application.notes} />
           <Style.CardButton>
             <AppEdit id={this.props.id} application={this.props.application} />
           </Style.CardButton>

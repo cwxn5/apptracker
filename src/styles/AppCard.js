@@ -26,12 +26,6 @@ export const CardTitleHeaderPosition = styled.div`
 `;
 export const CardButton = styled.div`
   width: auto;
-  .ant-btn {
-    color: ${themes.default.color5};
-  }
-  .ant-select {
-    color: ${themes.default.color5};
-  }
 `;
 export const CardButtons = styled.div`
   display: flex;
@@ -50,7 +44,11 @@ export const CollapseWrapper = styled(Collapse)`
   background-color: color: ${themes.default.color1};;
 `;
 export const TwoColumnDiv = styled.div`
+  font-weight: 600;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   color: ${themes.default.color5};
+  a {
+    color: ${themes.default.color3};
+  }
 `;
