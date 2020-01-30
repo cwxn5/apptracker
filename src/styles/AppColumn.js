@@ -4,8 +4,9 @@ import { device } from "./device";
 import { themes } from "./theme";
 
 export const AvatarWrapper = styled(Avatar)`
-  background-color: ${themes.default.color5};
-  color: ${themes.default.color1};
+  background-color: ${themes.default.color1};
+  color: ${themes.default.color5};
+  font-weight: 600;
 `;
 export const ColumnDiv = styled.div`
   height: fit-content;
@@ -40,6 +41,9 @@ export const ColumnHeaderTitle = styled.div`
 export const RightAlignItem = styled.div`
   float: right;
   text-align: right;
+  .ant-switch-checked {
+    background-color: ${themes.default.color3};
+  }
 `;
 export const AppCardsDiv = styled.div`
   border: ${props =>

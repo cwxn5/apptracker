@@ -9,21 +9,29 @@ export const CardTitleDiv = styled.div`
   display: flex;
   justify-content: space-between;
   padding: 0 4px;
-  color: ${themes.default.color4};
+  color: ${themes.default.color5};
 `;
 export const CardTitleHeaderCompany = styled.div`
   text-align: right;
-  font-weight: ${props => (props.favorite ? "bold" : "normal")};
+  font-weight: 600;
+  font-style: ${props => (props.favorite ? "italic" : "normal")};
 `;
 export const CardTitleHeaderLocation = styled.div`
   text-align: right;
   font-size: 10px;
 `;
 export const CardTitleHeaderPosition = styled.div`
-  font-weight: ${props => (props.favorite ? "bold" : "normal")};
+  font-weight: 600;
+  font-style: ${props => (props.favorite ? "italic" : "normal")};
 `;
 export const CardButton = styled.div`
   width: auto;
+  .ant-btn {
+    color: ${themes.default.color5};
+  }
+  .ant-select {
+    color: ${themes.default.color5};
+  }
 `;
 export const CardButtons = styled.div`
   display: flex;
