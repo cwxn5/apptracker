@@ -2,15 +2,14 @@ import styled from "styled-components";
 import { device } from "./device";
 
 export const LogOutButton = styled.button`
+  display: flex;
+  flex-wrap: nowrap;
   margin-left: 8px;
   background-color: #d34836;
   border: none;
   color: white;
   border-radius: 16px;
   padding: 8px 8px;
-  @media ${device.mobileS} {
-    font-size: 10px;
-  }
 `;
 export const Navbar = styled.div`
   display: flex;
