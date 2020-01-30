@@ -119,7 +119,7 @@ class AppForm extends React.Component {
     return (
       <div className={className}>
         <label>{label}</label>
-        <textarea {...input} />
+        <textarea rows="2" {...input} />
         {this.renderError(meta)}
       </div>
     );
