@@ -1,14 +1,7 @@
 import React from "react";
-import styled from "styled-components";
 import AppColumn from "./AppColumn";
 import { columnTypes } from "./columnTypes";
-
-const AppPageDiv = styled.div`
-  display: flex;
-  flex-wrap: nowrap;
-  overflow: auto;
-  height: calc(100vh - 54px);
-`;
+import { AppPageDiv } from "../../styles/AppPage";
 
 class AppPage extends React.Component {
   renderColumns() {

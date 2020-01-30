@@ -1,43 +1,54 @@
 import styled from "styled-components";
-import { Avatar } from "antd";
+import { Collapse } from "antd";
+import { themes } from "./theme";
 
-export const AvatarWrapper = styled(Avatar)`
-  background-color: black;
-  color: white;
+export const CardTitleDate = styled.div`
+  font-size: 10px;
 `;
-export const ColumnDiv = styled.div`
-  min-width: 350px;
-  width: 350px;
-  height: fit-content;
-  margin: 16px;
-  padding: 8px;
-  background-color: #f3f4f5;
-  border: 1px solid #d9d9d9;
-  border-radius: 4px;
-`;
-export const ColumnHeader = styled.div`
+export const CardTitleDiv = styled.div`
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  padding-bottom: ${props => (props.cards ? "8px" : "0")};
+  padding: 0 4px;
+  color: ${themes.default.color5};
 `;
-export const ColumnHeaderTitle = styled.div`
-  display: flex;
-  align-items: center;
-`;
-export const RightAlignItem = styled.div`
-  float: right;
+export const CardTitleHeaderCompany = styled.div`
   text-align: right;
+  font-weight: 600;
+  font-style: ${props => (props.favorite ? "italic" : "normal")};
 `;
-export const AppCardsDiv = styled.div`
-  border: ${props => (props.showCardAppsBorder ? "1px solid #d9d9d9" : "none")};
-  border-radius: 4px;
-  overflow-y: auto;
-  max-height: 75vh;
+export const CardTitleHeaderLocation = styled.div`
+  text-align: right;
+  font-size: 10px;
 `;
-export const Title = styled.div`
-  font-weight: bold;
-  font-size: 20px;
-  color: black;
-  padding: 0 8px;
+export const CardTitleHeaderPosition = styled.div`
+  font-weight: 600;
+  font-style: ${props => (props.favorite ? "italic" : "normal")};
+`;
+export const CardButton = styled.div`
+  width: auto;
+`;
+export const CardButtons = styled.div`
+  display: flex;
+  justify-content: space-between;
+  padding-top: 8px;
+`;
+export const CollapseWrapper = styled(Collapse)`
+  .ant-collapse-item {
+    .ant-collapse-header {
+      padding: 2px;
+    }
+  }
+  .ant-collapse-item.ant-collapse-no-arrow > .ant-collapse-header {
+    padding: 2px;
+  }
+  background-color: color: ${themes.default.color1};;
+`;
+export const TwoColumnDiv = styled.div`
+  font-weight: 600;
+  display: flex;
+  justify-content: space-around;
+  color: ${themes.default.color5};
+  a {
+    color: ${themes.default.color3};
+  }
 `;

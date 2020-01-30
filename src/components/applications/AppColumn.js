@@ -7,7 +7,7 @@ import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import AppCard from "./AppCard";
 import AppCreate from "./AppCreate";
 import getFilteredApplications from "../../selectors/application";
-import * as Style from "../../styles/AppCard";
+import * as Style from "../../styles/AppColumn";
 
 class AppColumn extends React.Component {
   state = { showCards: false };
@@ -48,7 +48,7 @@ class AppColumn extends React.Component {
         <Style.ColumnHeader
           cards={
             (this.props.title !== "Rejected" || this.state.showCards) &&
-            this.props.apps.length > 0
+            (this.props.apps.length > 0 || this.props.title === "Applied")
           }
         >
           <Style.ColumnHeaderTitle>

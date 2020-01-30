@@ -7,10 +7,11 @@ import styled from "styled-components";
 import { createApplication } from "../../actions/applications";
 import AppForm from "./AppForm";
 import { ModalWrapper } from "../../styles/ModalWrapper";
+import { themes } from "../../styles/theme";
 
 const CreateButton = styled.button`
-  color: white;
-  background-color: #1b1c1d;
+  color: ${themes.default.color1};
+  background-color: ${themes.default.color5};
   width: 100%;
   height: 40px;
   font-size: 16px;

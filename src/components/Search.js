@@ -1,10 +1,16 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Input, Select } from "antd";
+import styled from "styled-components";
 
 import { setTextFilter, setSearchOption } from "../actions/filters";
 
+const { Search: AntSearch } = Input;
 const { Option } = Select;
+
+const InputWrapper = styled(AntSearch)`
+  width: 95%;
+`;
 
 class Search extends React.Component {
   handleOptionChange = value => {
@@ -23,13 +29,12 @@ class Search extends React.Component {
   };
   render() {
     return (
-      <Input
-        addonAfter={this.selectAfter()}
-        placeholder="Search by"
+      <InputWrapper
+        size="small"
+        addonBefore={this.selectAfter()}
         onChange={this.onTextChange}
         allowClear
-        style={{ width: "220px" }}
-      ></Input>
+      ></InputWrapper>
     );
   }
 }

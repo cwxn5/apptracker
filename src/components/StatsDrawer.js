@@ -6,9 +6,20 @@ import { Drawer, Statistic } from "antd";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChartBar } from "@fortawesome/free-solid-svg-icons";
 import styled from "styled-components";
+import { device } from "../styles/device";
+import { themes } from "../styles/theme";
 
 const IconWrapper = styled(FontAwesomeIcon)`
   cursor: pointer;
+  color: ${themes.default.color3};
+  @media ${device.mobileS} {
+    font-size: 26px;
+    padding-left: 4px;
+  }
+  @media ${device.tablet} {
+    font-size: 40px;
+    padding: 0 8px;
+  }
 `;
 const StatsWrapper = styled.div`
   width: 100%;
@@ -91,7 +102,6 @@ class StatsDrawer extends React.Component {
           icon={faChartBar}
           size="2x"
           inverse
-          pull="left"
           onClick={this.showDrawer}
         >
           Stats
