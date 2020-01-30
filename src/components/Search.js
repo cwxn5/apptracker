@@ -4,7 +4,6 @@ import { Input, Select } from "antd";
 import styled from "styled-components";
 
 import { setTextFilter, setSearchOption } from "../actions/filters";
-import { device } from "../styles/device";
 
 const { Option } = Select;
 

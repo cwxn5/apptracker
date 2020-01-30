@@ -1,81 +1,41 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Collapse } from "antd";
-import styled from "styled-components";
-
 import AppEdit from "./AppEdit";
 import AppDelete from "./AppDelete";
 import AppMove from "./AppMove";
 import Notes from "./AppCard/Notes";
+import * as Style from "../../styles/AppCard";
 
 const { Panel } = Collapse;
-
-const CardTitleDiv = styled.div`
-  display: flex;
-  justify-content: space-between;
-  padding: 0 4px;
-`;
-const CardTitleHeaderCompany = styled.div`
-  text-align: right;
-  font-weight: ${props => (props.favorite ? "bold" : "normal")};
-`;
-const CardTitleHeaderPosition = styled.div`
-  font-weight: ${props => (props.favorite ? "bold" : "normal")};
-`;
-const CardTitleHeaderLocation = styled.div`
-  text-align: right;
-  font-size: 10px;
-  color: grey;
-`;
-const CardTitleDate = styled.div`
-  font-size: 10px;
-  color: grey;
-`;
-const CardButtons = styled.div`
-  display: flex;
-  justify-content: space-between;
-  padding-top: 8px;
-`;
-const CardButton = styled.div`
-  width: auto;
-`;
-const CollapseWrapper = styled(Collapse)`
-  .ant-collapse-item {
-    .ant-collapse-header {
-      padding: 2px;
-    }
-  }
-  .ant-collapse-item.ant-collapse-no-arrow > .ant-collapse-header {
-    padding: 2px;
-  }
-`;
-
-const TwoColumnDiv = styled.div`
-  display: flex;
-  justify-content: space-between;
-`;
 
 class AppCard extends React.Component {
   state = { notesOpen: false };
   renderCardTitle = () => {
     return (
-      <CardTitleDiv>
+      <Style.CardTitleDiv>
         <div>
-          <CardTitleHeaderPosition favorite={this.props.application.favorite}>
+          <Style.CardTitleHeaderPosition
+            favorite={this.props.application.favorite}
+          >
             {this.props.application.position}
-          </CardTitleHeaderPosition>
-          <CardTitleDate>{this.props.application.date}</CardTitleDate>
+          </Style.CardTitleHeaderPosition>
+          <Style.CardTitleDate>
+            {this.props.application.date}
+          </Style.CardTitleDate>
         </div>
 
         <div>
-          <CardTitleHeaderCompany favorite={this.props.application.favorite}>
+          <Style.CardTitleHeaderCompany
+            favorite={this.props.application.favorite}
+          >
             {this.props.application.company}
-          </CardTitleHeaderCompany>
-          <CardTitleHeaderLocation>
+          </Style.CardTitleHeaderCompany>
+          <Style.CardTitleHeaderLocation>
             {this.props.application.location}
-          </CardTitleHeaderLocation>
+          </Style.CardTitleHeaderLocation>
         </div>
-      </CardTitleDiv>
+      </Style.CardTitleDiv>
     );
   };
   renderJobUrl = () => {
@@ -94,28 +54,28 @@ class AppCard extends React.Component {
   renderCardContent = () => {
     return (
       <div>
-        <TwoColumnDiv>
+        <Style.TwoColumnDiv>
           {this.renderJobUrl()}
           <div>Resume: {this.props.application.resume}</div>
-        </TwoColumnDiv>
+        </Style.TwoColumnDiv>
         <Notes notes={this.props.application.notes} />
-        <CardButtons>
-          <CardButton>
+        <Style.CardButtons>
+          <Style.CardButton>
             <AppEdit id={this.props.id} application={this.props.application} />
-          </CardButton>
-          <CardButton>
+          </Style.CardButton>
+          <Style.CardButton>
             <AppDelete
               id={this.props.id}
               application={this.props.application}
             />
-          </CardButton>
-          <CardButton>
+          </Style.CardButton>
+          <Style.CardButton>
             <AppMove
               id={this.props.id}
               status={this.props.application.status}
             />
-          </CardButton>
-        </CardButtons>
+          </Style.CardButton>
+        </Style.CardButtons>
       </div>
     );
   };
@@ -128,11 +88,11 @@ class AppCard extends React.Component {
   };
   render() {
     return (
-      <CollapseWrapper>
+      <Style.CollapseWrapper>
         <Panel showArrow={false} header={this.renderCardTitle()}>
           {this.renderCardContent()}
         </Panel>
-      </CollapseWrapper>
+      </Style.CollapseWrapper>
     );
   }
 }
