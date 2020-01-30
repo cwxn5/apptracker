@@ -7,9 +7,11 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChartBar } from "@fortawesome/free-solid-svg-icons";
 import styled from "styled-components";
 import { device } from "../styles/device";
+import { themes } from "../styles/theme";
 
 const IconWrapper = styled(FontAwesomeIcon)`
   cursor: pointer;
+  color: ${themes.default.color3};
   @media ${device.mobileS} {
     font-size: 26px;
     padding-left: 4px;

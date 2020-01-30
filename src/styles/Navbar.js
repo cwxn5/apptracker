@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { device } from "./device";
+import { themes } from "./theme";
 
 export const LogOutButton = styled.button`
   display: flex;
@@ -17,7 +18,7 @@ export const Navbar = styled.div`
   align-items: center;
   height: 50px;
   width: 100%;
-  background-color: black;
+  background-color: ${themes.default.color5};
   padding: 8px;
   @media ${device.mobileS} {
     height: 80px;
@@ -28,7 +29,7 @@ export const Navbar = styled.div`
 `;
 export const NavbarTitle = styled.div`
   align-self: center;
-  color: white;
+  color: ${themes.default.color1};
   font-size: 30px;
   padding: 0 2rem;
   @media ${device.mobileS} {
@@ -45,7 +46,7 @@ export const NavbarRight = styled.div`
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  color: white;
+  color: ${themes.default.color1};
   padding: 8px 0;
 `;
 export const NavbarLeft = styled.div`
@@ -53,7 +54,7 @@ export const NavbarLeft = styled.div`
   display: flex;
   flex-flow: row wrap;
   align-items: center;
-  color: white;
+  color: ${themes.default.color1};
   padding: 8px 0;
   @media ${device.mobileS} {
     padding-left: 8px;
@@ -74,7 +75,7 @@ export const SearchDiv = styled.div`
   }
 `;
 export const NavbarName = styled.div`
-  color: white;
+  color: ${themes.default.color1};
   display: flex;
   @media ${device.mobileS} {
     display: none;

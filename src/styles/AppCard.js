@@ -1,14 +1,15 @@
 import styled from "styled-components";
 import { Collapse } from "antd";
+import { themes } from "./theme";
 
 export const CardTitleDate = styled.div`
   font-size: 10px;
-  color: grey;
 `;
 export const CardTitleDiv = styled.div`
   display: flex;
   justify-content: space-between;
   padding: 0 4px;
+  color: ${themes.default.color4};
 `;
 export const CardTitleHeaderCompany = styled.div`
   text-align: right;
@@ -17,7 +18,6 @@ export const CardTitleHeaderCompany = styled.div`
 export const CardTitleHeaderLocation = styled.div`
   text-align: right;
   font-size: 10px;
-  color: grey;
 `;
 export const CardTitleHeaderPosition = styled.div`
   font-weight: ${props => (props.favorite ? "bold" : "normal")};
@@ -39,8 +39,10 @@ export const CollapseWrapper = styled(Collapse)`
   .ant-collapse-item.ant-collapse-no-arrow > .ant-collapse-header {
     padding: 2px;
   }
+  background-color: color: ${themes.default.color1};;
 `;
 export const TwoColumnDiv = styled.div`
   display: flex;
   justify-content: space-between;
+  color: ${themes.default.color5};
 `;

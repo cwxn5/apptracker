@@ -1,18 +1,19 @@
 import styled from "styled-components";
 import { Avatar } from "antd";
 import { device } from "./device";
+import { themes } from "./theme";
 
 export const AvatarWrapper = styled(Avatar)`
-  background-color: black;
-  color: white;
+  background-color: ${themes.default.color5};
+  color: ${themes.default.color1};
 `;
 export const ColumnDiv = styled.div`
   height: fit-content;
   margin: 16px;
   padding: 8px;
-  background-color: #f3f4f5;
-  border: 1px solid #d9d9d9;
-  border-radius: 4px;
+  background-color: ${themes.default.color2};
+  border: 1px solid ${themes.default.color2};
+  border-radius: 8px;
   @media ${device.mobileS} {
     min-width: 90%;
     max-width: 90%;
@@ -41,7 +42,8 @@ export const RightAlignItem = styled.div`
   text-align: right;
 `;
 export const AppCardsDiv = styled.div`
-  border: ${props => (props.showCardAppsBorder ? "1px solid #d9d9d9" : "none")};
+  border: ${props =>
+    props.showCardAppsBorder ? `1px solid ${themes.default.color2}` : "none"};
   border-radius: 4px;
   overflow-y: auto;
   max-height: 72vh;
@@ -55,6 +57,6 @@ export const AppCardsDiv = styled.div`
 export const Title = styled.div`
   font-weight: bold;
   font-size: 20px;
-  color: black;
+  color: ${themes.default.color5};
   padding: 0 8px;
 `;
