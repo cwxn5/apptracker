@@ -5,9 +5,10 @@ import styled from "styled-components";
 
 import { setTextFilter, setSearchOption } from "../actions/filters";
 
+const { Search: AntSearch } = Input;
 const { Option } = Select;
 
-const InputWrapper = styled(Input)`
+const InputWrapper = styled(AntSearch)`
   width: 95%;
 `;
 
@@ -29,8 +30,8 @@ class Search extends React.Component {
   render() {
     return (
       <InputWrapper
-        addonAfter={this.selectAfter()}
-        placeholder="Search by"
+        size="small"
+        addonBefore={this.selectAfter()}
         onChange={this.onTextChange}
         allowClear
       ></InputWrapper>
