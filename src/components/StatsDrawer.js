@@ -95,7 +95,7 @@ class StatsDrawer extends React.Component {
 
     return (
       <StatsWrapper>
-        <h2>Applications Added</h2>
+        <h2>New Applications</h2>
         <StatsRow>
           <StatisticColumn title="Today" value={today} />
           <StatisticColumn title="Last 7 Days" value={last7days} />
@@ -130,7 +130,7 @@ class StatsDrawer extends React.Component {
         >
           {this.renderStats()}
           <StatsWrapper>
-            <h2>City Stats</h2>
+            <h2>Cities</h2>
             <CitiesColumn>{this.renderCityStats()}</CitiesColumn>
           </StatsWrapper>
         </Drawer>
