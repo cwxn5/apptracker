@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { Collapse } from "antd";
-import AppEdit from "./AppEdit";
+import AppEdit from "./AppForm/AppEdit";
 import AppDelete from "./AppDelete";
 import AppMove from "./AppMove";
 import Notes from "./AppCard/Notes";

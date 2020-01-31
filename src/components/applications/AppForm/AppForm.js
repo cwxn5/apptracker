@@ -5,15 +5,16 @@ import "antd/dist/antd.css";
 import Moment from "moment";
 import styled from "styled-components";
 
-import LocationAutoComplete from "./AppCard/LocationAutoComplete";
-import ResumeAutoComplete from "./AppCard/ResumeAutoComplete";
-import "../../styles/appForm.css";
+import LocationAutoComplete from "../AppCard/LocationAutoComplete";
+import ResumeAutoComplete from "../AppCard/ResumeAutoComplete";
+import "../../../styles/appForm.css";
+import { themes } from "../../../styles/theme";
 
 const { TextArea } = Input;
 
 const SubmitButton = styled.button`
-  color: white;
-  background-color: #1b1c1d;
+  color: ${themes.default.color1};
+  background-color: ${themes.default.color5};
   width: 100%;
   height: 40px;
   font-size: 16px;
@@ -32,6 +33,7 @@ class AppForm extends React.Component {
     return (
       <div className="field">
         <label>{label}</label>
+        <br />
         <DatePicker
           onChange={date => input.onChange(Moment(date).format("MM/DD/YYYY"))}
           defaultValue={Moment(input.value, "MM/DD/YYYY")}

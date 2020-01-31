@@ -2,10 +2,14 @@ import React from "react";
 import { connect } from "react-redux";
 import { Button } from "antd";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEdit } from "@fortawesome/free-solid-svg-icons";
-import { editApplication } from "../../actions/applications";
+import { faEdit, faTimes } from "@fortawesome/free-solid-svg-icons";
+import { editApplication } from "../../../actions/applications";
 import AppForm from "./AppForm";
-import { ModalWrapper } from "../../styles/ModalWrapper";
+import {
+  ModalWrapper,
+  TitleDiv,
+  IconButton
+} from "../../../styles/ModalWrapper";
 
 class AppEdit extends React.Component {
   state = { modalOpen: false };
@@ -19,6 +23,18 @@ class AppEdit extends React.Component {
       </Button>
     );
   }
+  renderTitle = () => {
+    return (
+      <TitleDiv>
+        <div>Edit Application</div>
+        <div>
+          <IconButton onClick={this.handleClose}>
+            <FontAwesomeIcon icon={faTimes} />
+          </IconButton>
+        </div>
+      </TitleDiv>
+    );
+  };
   onSubmit = formValues => {
     this.props.editApplication(formValues, this.props.id);
     this.handleClose();
@@ -33,7 +49,7 @@ class AppEdit extends React.Component {
         <ModalWrapper
           visible={this.state.modalOpen}
           closable={false}
-          title="Edit Application"
+          title={this.renderTitle()}
           onOk={this.handleClose}
           onCancel={this.handleClose}
           destroyOnClose={true}

@@ -29,3 +29,14 @@ export const ModalWrapper = styled(Modal)`
     background-color: ${themes.default.color5};
   }
 `;
+export const TitleDiv = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: ${themes.default.color1};
+`;
+export const IconButton = styled.button`
+  border: none;
+  cursor: pointer;
+  background-color: transparent;
+`;
