@@ -1,8 +1,11 @@
 .field {
   font-weight: 600;
+  display: flex;
+  flex-direction: column;
+  margin: 0;
 }
 .field label {
-  padding-right: 4px;
+  padding: 4px;
 }
 .fielderror {
   color: #d34836;

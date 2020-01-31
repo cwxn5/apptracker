@@ -33,7 +33,6 @@ class AppForm extends React.Component {
     return (
       <div className="field">
         <label>{label}</label>
-        <br />
         <DatePicker
           onChange={date => input.onChange(Moment(date).format("MM/DD/YYYY"))}
           defaultValue={Moment(input.value, "MM/DD/YYYY")}
