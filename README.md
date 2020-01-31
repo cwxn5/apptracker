@@ -1,3 +1,5 @@
+![Screenshot](src/images/AppTracker.png)
+
 # [AppTracker](https://app--tracker.herokuapp.com/)
 
 AppTracker allows you to organize your job search. Easily input the necessary information for each job and move and edit as you move through the application process.
@@ -19,5 +21,3 @@ AppTracker was built using React (bootstrapped with [Create React App](https://g
 - Multiple Card View options
 - Resume Storage and Preview
 - Configurable App Status Columns
-
-![Screenshot](src/images/AppTracker.png)
