@@ -7,6 +7,7 @@ import styled from "styled-components";
 
 import LocationAutoComplete from "./AppCard/LocationAutoComplete";
 import ResumeAutoComplete from "./AppCard/ResumeAutoComplete";
+import "../../styles/appForm.css";
 
 const { TextArea } = Input;
 
@@ -47,7 +48,7 @@ class AppForm extends React.Component {
     return "";
   }
   renderFavorite = ({ input, label, meta }) => {
-    const className = `field ${meta.error && meta.touched ? "error" : ""}`;
+    const className = `field ${meta.error && meta.touched ? "fielderror" : ""}`;
     if (!input.value) {
       input.value = false;
     }
@@ -65,7 +66,7 @@ class AppForm extends React.Component {
     );
   };
   renderInput = ({ input, label, meta }) => {
-    const className = `field ${meta.error && meta.touched ? "error" : ""}`;
+    const className = `field ${meta.error && meta.touched ? "fielderror" : ""}`;
     return (
       <div className={className}>
         <label>{label + this.renderError(meta)}</label>
@@ -74,7 +75,7 @@ class AppForm extends React.Component {
     );
   };
   renderLocationInput = ({ input, label, meta }) => {
-    const className = `field ${meta.error && meta.touched ? "error" : ""}`;
+    const className = `field ${meta.error && meta.touched ? "fielderror" : ""}`;
     return (
       <div className={className}>
         <label>
@@ -87,27 +88,7 @@ class AppForm extends React.Component {
     );
   };
   renderResumeInput = ({ input, label, meta }) => {
-    const className = `field ${meta.error && meta.touched ? "error" : ""}`;
-    return (
-      <div className={className}>
-        <label>{label}</label>
-        <ResumeAutoComplete input={input} />
-        {this.renderError(meta)}
-      </div>
-    );
-  };
-  renderLocationInput = ({ input, label, meta }) => {
-    const className = `field ${meta.error && meta.touched ? "error" : ""}`;
-    return (
-      <div className={className}>
-        <label>{label}</label>
-        <LocationAutoComplete input={input} />
-        {this.renderError(meta)}
-      </div>
-    );
-  };
-  renderResumeInput = ({ input, label, meta }) => {
-    const className = `field ${meta.error && meta.touched ? "error" : ""}`;
+    const className = `field ${meta.error && meta.touched ? "fielderror" : ""}`;
     return (
       <div className={className}>
         <label>{label}</label>
@@ -117,7 +98,7 @@ class AppForm extends React.Component {
     );
   };
   renderTextArea = ({ input, label, meta }) => {
-    const className = `field ${meta.error && meta.touched ? "error" : ""}`;
+    const className = `field ${meta.error && meta.touched ? "fielderror" : ""}`;
     return (
       <div className={className}>
         <label>{label}</label>
@@ -133,10 +114,7 @@ class AppForm extends React.Component {
 
   render() {
     return (
-      <form
-        onSubmit={this.props.handleSubmit(this.onSubmit)}
-        className="ui form error"
-      >
+      <form onSubmit={this.props.handleSubmit(this.onSubmit)}>
         <Field name="position" component={this.renderInput} label="Position" />
         <Field name="company" component={this.renderInput} label="Company" />
         <Field

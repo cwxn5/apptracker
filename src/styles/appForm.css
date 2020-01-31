@@ -1,0 +1,12 @@
+.field {
+  font-weight: 600;
+}
+.field label {
+  padding-right: 4px;
+}
+.fielderror {
+  color: #d34836;
+}
+.fielderror input {
+  border: 1px solid #d34836;
+}
