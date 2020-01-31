@@ -28,6 +28,10 @@ const StatsWrapper = styled.div`
 const StatsRow = styled.div`
   display: flex;
 `;
+const CitiesColumn = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+`;
 
 const StatisticColumn = styled(Statistic)`
   flex: 50%;
@@ -45,6 +49,30 @@ class StatsDrawer extends React.Component {
     this.setState({
       visible: false
     });
+  };
+  renderCityStats() {
+    const cities = this.getCityStats();
+    return cities.map(city => {
+      return <StatisticColumn key={city[0]} title={city[0]} value={city[1]} />;
+    });
+  }
+  getCityStats = () => {
+    const locations = Object.entries(
+      _.countBy(_.map(this.props.apps, "location"))
+    );
+    let sorted = locations.sort(function(a, b) {
+      if (a[1] === b[1]) {
+        if (a[0] < b[0]) {
+          return -1;
+        }
+        if (a[0] > b[0]) {
+          return 1;
+        }
+        return 0;
+      }
+      return b[1] - a[1];
+    });
+    return sorted;
   };
   renderStats = () => {
     var now = moment();
@@ -67,27 +95,14 @@ class StatsDrawer extends React.Component {
 
     return (
       <StatsWrapper>
-        <h4>Applications Added</h4>
+        <h2>New Applications</h2>
         <StatsRow>
-          <StatisticColumn
-            style={{ flex: "50%" }}
-            title="Today"
-            value={today}
-          />
-          <StatisticColumn
-            style={{ flex: "50%" }}
-            title="Last 7 Days"
-            value={last7days}
-          />
+          <StatisticColumn title="Today" value={today} />
+          <StatisticColumn title="Last 7 Days" value={last7days} />
         </StatsRow>
         <StatsRow>
+          <StatisticColumn title="Last Month" value={lastMonth} />
           <StatisticColumn
-            style={{ flex: "50%" }}
-            title="Last Month"
-            value={lastMonth}
-          />
-          <StatisticColumn
-            style={{ flex: "50%" }}
             title="Total"
             value={Object.keys(this.props.apps).length}
           />
@@ -114,6 +129,10 @@ class StatsDrawer extends React.Component {
           visible={this.state.visible}
         >
           {this.renderStats()}
+          <StatsWrapper>
+            <h2>Cities</h2>
+            <CitiesColumn>{this.renderCityStats()}</CitiesColumn>
+          </StatsWrapper>
         </Drawer>
       </div>
     );
