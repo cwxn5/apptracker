@@ -11,6 +11,12 @@ export const LogOutButton = styled.button`
   color: ${themes.default.color1};
   border-radius: 16px;
   padding: 8px 8px;
+  :hover {
+    cursor: pointer;
+  }
+  :focus {
+    outline: none;
+  }
 `;
 export const Navbar = styled.div`
   display: flex;
@@ -30,7 +36,7 @@ export const Navbar = styled.div`
 export const NavbarTitle = styled.div`
   align-self: center;
   color: ${themes.default.color1};
-  font-size: 30px;
+  font-size: 20px;
   padding: 0 2rem;
   @media ${device.mobileS} {
     padding-left: 8px;
@@ -38,7 +44,7 @@ export const NavbarTitle = styled.div`
   }
   @media ${device.mobileXL} {
     padding: inherit;
-    font-size: 30px;
+    font-size: 20px;
   }
 `;
 export const NavbarRight = styled.div`

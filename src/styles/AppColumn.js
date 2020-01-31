@@ -48,9 +48,23 @@ export const RightAlignItem = styled.div`
 export const AppCardsDiv = styled.div`
   border: ${props =>
     props.showCardAppsBorder ? `1px solid ${themes.default.color2}` : "none"};
-  border-radius: 4px;
+  border-radius: 8px;
   overflow-y: auto;
   max-height: 72vh;
+  &::-webkit-scrollbar {
+    width: 4px;
+    background-color: ${themes.default.color2};
+  }
+  &::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.3);
+    -webkit-border-radius: 4px;
+    border-radius: 4px;
+  }
+  &::-webkit-scrollbar-thumb {
+    -webkit-border-radius: 4px;
+    border-radius: 4px;
+    background-color: ${themes.default.color4};
+  }
   @media ${device.mobileS} {
     max-height: 65vh;
   }
