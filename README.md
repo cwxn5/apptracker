@@ -1,5 +1,3 @@
-![Screenshot](src/images/AppTracker.png)
-
 # [AppTracker](https://app--tracker.herokuapp.com/)
 
 AppTracker allows you to organize your job search. Easily input the necessary information for each job and move and edit as you move through the application process.
