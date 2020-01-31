@@ -1,6 +1,5 @@
 import React from "react";
 import { Modal, Button } from "antd";
-import styled from "styled-components";
 
 class Notes extends React.Component {
   state = { visible: false };
