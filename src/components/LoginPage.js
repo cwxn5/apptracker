@@ -27,6 +27,12 @@ const LogInButton = styled.button`
   color: white;
   border-radius: 16px;
   padding: 8px 12px;
+  :hover {
+    cursor: pointer;
+  }
+  :focus {
+    outline: none;
+  }
 `;
 
 const P = styled.p`

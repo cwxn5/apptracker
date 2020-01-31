@@ -50,6 +50,7 @@ class AppCreate extends React.Component {
           onCancel={this.hideModal}
           destroyOnClose={true}
           footer={null}
+          closable={false}
         >
           <AppForm onSubmit={this.onSubmit} />
         </ModalWrapper>

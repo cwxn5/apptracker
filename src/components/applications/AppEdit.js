@@ -32,6 +32,7 @@ class AppEdit extends React.Component {
         </Button>
         <ModalWrapper
           visible={this.state.modalOpen}
+          closable={false}
           title="Edit Application"
           onOk={this.handleClose}
           onCancel={this.handleClose}

@@ -51,6 +51,20 @@ export const AppCardsDiv = styled.div`
   border-radius: 4px;
   overflow-y: auto;
   max-height: 72vh;
+  &::-webkit-scrollbar {
+    width: 4px;
+    background-color: ${themes.default.color2};
+  }
+  &::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    -webkit-border-radius: 4px;
+    border-radius: 4px;
+  }
+  &::-webkit-scrollbar-thumb {
+    -webkit-border-radius: 4px;
+    border-radius: 4px;
+    background-color: ${themes.default.color5};
+  }
   @media ${device.mobileS} {
     max-height: 65vh;
   }

@@ -8,6 +8,8 @@ import styled from "styled-components";
 import LocationAutoComplete from "./AppCard/LocationAutoComplete";
 import ResumeAutoComplete from "./AppCard/ResumeAutoComplete";
 
+const { TextArea } = Input;
+
 const SubmitButton = styled.button`
   color: white;
   background-color: #1b1c1d;
@@ -119,7 +121,7 @@ class AppForm extends React.Component {
     return (
       <div className={className}>
         <label>{label}</label>
-        <textarea rows="2" {...input} />
+        <TextArea {...input} autoSize />
         {this.renderError(meta)}
       </div>
     );
