@@ -18,7 +18,7 @@ const IconWrapper = styled(FontAwesomeIcon)`
   }
   @media ${device.tablet} {
     font-size: 40px;
-    padding: 0 8px;
+    padding: 4px 8px;
   }
 `;
 const StatsWrapper = styled.div`
@@ -50,7 +50,17 @@ class StatsDrawer extends React.Component {
       visible: false
     });
   };
-  renderCityStats() {
+  renderCityStats = () => {
+    if (Object.keys(this.props.apps).length) {
+      return (
+        <StatsWrapper>
+          <h2>Cities</h2>
+          <CitiesColumn>{this.renderCities()}</CitiesColumn>
+        </StatsWrapper>
+      );
+    }
+  };
+  renderCities() {
     const cities = this.getCityStats();
     return cities.map(city => {
       return <StatisticColumn key={city[0]} title={city[0]} value={city[1]} />;
@@ -129,10 +139,7 @@ class StatsDrawer extends React.Component {
           visible={this.state.visible}
         >
           {this.renderStats()}
-          <StatsWrapper>
-            <h2>Cities</h2>
-            <CitiesColumn>{this.renderCityStats()}</CitiesColumn>
-          </StatsWrapper>
+          {this.renderCityStats()}
         </Drawer>
       </div>
     );

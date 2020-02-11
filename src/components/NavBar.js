@@ -7,6 +7,7 @@ import { Modal } from "antd";
 
 import Search from "./Search";
 import StatsDrawer from "./StatsDrawer";
+import Links from "./settings/Links";
 
 import { startLogout } from "../actions/auth";
 
@@ -45,7 +46,9 @@ class Header extends React.Component {
         </Style.NavbarLeft>
         <Style.NavbarRight>
           <StatsDrawer />
-          <Style.NavbarName>{this.props.user.displayName}</Style.NavbarName>
+          <Style.LinksWrapper>
+            <Links />
+          </Style.LinksWrapper>
           <Style.LogOutButton onClick={this.showModal}>
             <FontAwesomeIcon style={{ paddingRight: "4px" }} icon={faGoogle} />
             <FontAwesomeIcon icon={faSignOutAlt} />

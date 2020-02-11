@@ -5,7 +5,7 @@ import { themes } from "./theme";
 export const LogOutButton = styled.button`
   display: flex;
   flex-wrap: nowrap;
-  margin-left: 8px;
+  margin-left: 4px;
   background-color: #d34836;
   border: none;
   color: ${themes.default.color1};
@@ -80,7 +80,7 @@ export const SearchDiv = styled.div`
     display: inherit;
   }
 `;
-export const NavbarName = styled.div`
+export const LinksWrapper = styled.div`
   color: ${themes.default.color1};
   display: flex;
   @media ${device.mobileS} {
