@@ -8,6 +8,7 @@ import { login, logout } from "./actions/auth";
 import Loader from "./components/Loader";
 import { LoginPage } from "./components/LoginPage";
 import { fetchApplications } from "./actions/applications";
+import { fetchSettings } from "./actions/userSettings";
 import "./styles/base.css";
 
 const store = configureStore();
@@ -36,7 +37,7 @@ ReactDOM.render(<Loader />, document.querySelector("#root"));
 firebase.auth().onAuthStateChanged(user => {
   if (user) {
     store.dispatch(login(user));
-
+    store.dispatch(fetchSettings());
     //fetch user applications
     store.dispatch(fetchApplications()).then(() => {
       renderApp(true);

@@ -18,7 +18,7 @@ const IconWrapper = styled(FontAwesomeIcon)`
   }
   @media ${device.tablet} {
     font-size: 40px;
-    padding: 0 8px;
+    padding: 4px 8px;
   }
 `;
 const StatsWrapper = styled.div`
