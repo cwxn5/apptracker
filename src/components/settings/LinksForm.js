@@ -34,6 +34,11 @@ class LinksForm extends React.Component {
       <form onSubmit={this.props.handleSubmit(this.onSubmit)}>
         <Field name="linkedin" component={this.renderInput} label="LinkedIn" />
         <Field name="github" component={this.renderInput} label="Github" />
+        <Field
+          name="portfolio"
+          component={this.renderInput}
+          label="Portfolio"
+        />
         <SubmitButton>Submit</SubmitButton>
       </form>
     );
