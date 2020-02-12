@@ -6,6 +6,7 @@ import styled from "styled-components";
 
 import { createApplication } from "../../../actions/applications";
 import AppForm from "./AppForm";
+import Links from "../../settings/Links";
 import { ModalWrapper } from "../../../styles/ModalWrapper";
 import { themes } from "../../../styles/theme";
 
@@ -28,6 +29,11 @@ const TitleDiv = styled.div`
   justify-content: space-between;
   color: ${themes.default.color1};
 `;
+const TitleLeft = styled.div`
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+`;
 const IconButton = styled.button`
   border: none;
   cursor: pointer;
@@ -44,7 +50,11 @@ class AppCreate extends React.Component {
   renderTitle = () => {
     return (
       <TitleDiv>
-        <div>New Application</div>
+        <TitleLeft>
+          <div>New Application</div>
+          <Links />
+        </TitleLeft>
+
         <div>
           <IconButton onClick={this.hideModal}>
             <FontAwesomeIcon icon={faTimes} />

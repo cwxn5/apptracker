@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { Popover, message } from "antd";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faLinkedin, faGithub } from "@fortawesome/free-brands-svg-icons";
-import { faPaperclip } from "@fortawesome/free-solid-svg-icons";
+import { faPaperclip, faUserCircle } from "@fortawesome/free-solid-svg-icons";
 import styled from "styled-components";
 
 import LinksForm from "./LinksForm";
@@ -13,7 +13,7 @@ import { themes } from "../../styles/theme";
 const IconWrapper = styled(FontAwesomeIcon)`
   cursor: pointer;
   font-size: 30px;
-  margin: 4px;
+  margin: 4px 8px;
 `;
 const PaperClipWrapper = styled(IconWrapper)`
   color: ${themes.default.color2};
@@ -23,6 +23,9 @@ const LinkedInWrapper = styled(IconWrapper)`
   color: ${themes.default.color3};
 `;
 const GithubWrapper = styled(IconWrapper)`
+  color: ${themes.default.color5};
+`;
+const PortfolioWrapper = styled(IconWrapper)`
   color: ${themes.default.color5};
 `;
 const FormButton = styled.button`
@@ -60,21 +63,36 @@ class Links extends React.Component {
       message.success(`Copied: ${text}`, 2);
     });
   };
-  onClickLinkedIn = () => {
-    this.copyToClipboard(this.props.userSettings.linkedin);
-  };
-  onClickGithub = () => {
-    this.copyToClipboard(this.props.userSettings.github);
-  };
   renderIcons = () => {
     if (this.props.userSettings) {
       return (
         <div>
           {this.props.userSettings.linkedin && (
-            <LinkedInWrapper onClick={this.onClickLinkedIn} icon={faLinkedin} />
+            <LinkedInWrapper
+              onClick={() =>
+                this.copyToClipboard(this.props.userSettings.linkedin)
+              }
+              title="LinkedIn"
+              icon={faLinkedin}
+            />
           )}
           {this.props.userSettings.github && (
-            <GithubWrapper onClick={this.onClickGithub} icon={faGithub} />
+            <GithubWrapper
+              onClick={() =>
+                this.copyToClipboard(this.props.userSettings.github)
+              }
+              title="Github"
+              icon={faGithub}
+            />
+          )}
+          {this.props.userSettings.portfolio && (
+            <PortfolioWrapper
+              onClick={() =>
+                this.copyToClipboard(this.props.userSettings.portfolio)
+              }
+              title="Portfolio"
+              icon={faUserCircle}
+            />
           )}
           {this.renderForm()}
         </div>
@@ -109,11 +127,7 @@ class Links extends React.Component {
     );
   };
   render() {
-    if (this.props.userSettings.github || this.props.userSettings.linkedin) {
-      return this.renderLinks();
-    } else {
-      return this.renderForm();
-    }
+    return this.renderLinks();
   }
 }
 const mapStateToProps = (state = {}) => {
