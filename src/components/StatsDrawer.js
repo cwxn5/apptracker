@@ -55,6 +55,7 @@ class StatsDrawer extends React.Component {
       return (
         <StatsWrapper>
           <h2>Cities</h2>
+          <h4>Total-Applied-Interview-Rejected</h4>
           <CitiesColumn>{this.renderCities()}</CitiesColumn>
         </StatsWrapper>
       );
@@ -63,7 +64,15 @@ class StatsDrawer extends React.Component {
   renderCities() {
     const cities = this.getCityStats();
     return cities.map(city => {
-      return <StatisticColumn key={city[0]} title={city[0]} value={city[1]} />;
+      let cityapps = _.filter(this.props.apps, { location: city[0] });
+      let status = _.countBy(cityapps, "status");
+      let stats = "" + city[1] + "-";
+      status.Applied ? (stats += status.Applied) : (stats += 0);
+      stats += "-";
+      status.Interview ? (stats += status.Interview) : (stats += 0);
+      stats += "-";
+      status.Rejected ? (stats += status.Rejected) : (stats += 0);
+      return <StatisticColumn key={city[0]} title={city[0]} value={stats} />;
     });
   }
   getCityStats = () => {
@@ -137,6 +146,7 @@ class StatsDrawer extends React.Component {
           closable={false}
           onClose={this.onClose}
           visible={this.state.visible}
+          width="300"
         >
           {this.renderStats()}
           {this.renderCityStats()}
