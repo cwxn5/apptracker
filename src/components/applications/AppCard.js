@@ -70,10 +70,7 @@ class AppCard extends React.Component {
             />
           </Style.CardButton>
           <Style.CardButton>
-            <AppMove
-              id={this.props.id}
-              status={this.props.application.status}
-            />
+            <AppMove id={this.props.id} application={this.props.application} />
           </Style.CardButton>
         </Style.CardButtons>
       </div>

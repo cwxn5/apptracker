@@ -1,8 +1,8 @@
-import database from "../firebase/firebase";
+import {fireStore} from "../firebase/firebase";
 
 export const createSettings = formValues => async (dispatch, getState) => {
   const userId = getState().auth.user.uid;
-  database
+  fireStore
     .collection("users")
     .doc(`${userId}`)
     .collection("settings")
@@ -21,7 +21,7 @@ export const createSettings = formValues => async (dispatch, getState) => {
 };
 export const fetchSettings = () => async (dispatch, getState) => {
   const userId = getState().auth.user.uid;
-  database
+  fireStore
     .collection("users")
     .doc(`${userId}`)
     .collection("settings")

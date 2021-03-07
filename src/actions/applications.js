@@ -1,113 +1,69 @@
-import database from "../firebase/firebase";
+import { database, fireStore } from "../firebase/firebase";
 
-export const createApplication = formValues => async (dispatch, getState) => {
+export const createApplication = (formValues) => async (dispatch, getState) => {
   const userId = getState().auth.user.uid;
-  const docId = Date.now().toString();
-  database
-    .collection("users")
-    .doc(`${userId}`)
-    .collection("applications")
-    .doc(docId)
-    .set({ ...formValues, id: docId })
-    .then(() => {
-      console.log("successful create", formValues);
-      dispatch({
-        type: "CREATE_APPLICATION",
-        payload: formValues,
-        id: docId
-      });
-    })
-    .catch(error => {
-      console.log("error", error);
-    });
+  const applicationsRef = database.ref(`users/${userId}/applications`);
+  const newApplicationRef = await applicationsRef.push();
+  await newApplicationRef.set(formValues);
+  dispatch({
+    type: "CREATE_APPLICATION",
+    payload: formValues,
+    id: newApplicationRef.key,
+  });
 };
-export const deleteApplication = docId => async (dispatch, getState) => {
-  const userId = getState().auth.user.uid;
-  database
-    .collection("users")
-    .doc(`${userId}`)
-    .collection("applications")
-    .doc(docId)
-    .delete()
-    .then(() => {
-      console.log("successful delete");
-      dispatch({
-        type: "DELETE_APPLICATION",
-        id: docId
-      });
-    })
-    .catch(error => {
-      console.log("error", error);
+export const deleteApplication = (docId) => async (dispatch, getState) => {
+  try {
+    const userId = getState().auth.user.uid;
+    const applicationToDeleteRef = database.ref(
+      `users/${userId}/applications/${docId}`
+    );
+    await applicationToDeleteRef.remove();
+    dispatch({
+      type: "DELETE_APPLICATION",
+      id: docId,
     });
+  } catch (e) {
+    console.log("application delete error: ", e);
+  }
 };
 export const editApplication = (formValues, docId) => async (
   dispatch,
   getState
 ) => {
-  const userId = getState().auth.user.uid;
-  database
-    .collection("users")
-    .doc(`${userId}`)
-    .collection("applications")
-    .doc(docId)
-    .update(formValues)
-    .then(() => {
-      console.log("successful edit", formValues);
-      dispatch({
-        type: "EDIT_APPLICATION",
-        payload: formValues,
-        id: docId
-      });
-    })
-    .catch(error => {
-      console.log("error", error);
+  try {
+    const userId = getState().auth.user.uid;
+    const applicationToUpdateRef = database.ref(
+      `users/${userId}/applications/${docId}`
+    );
+    applicationToUpdateRef.update(formValues);
+    dispatch({
+      type: "EDIT_APPLICATION",
+      payload: formValues,
+      id: docId,
     });
+  } catch (e) {
+    console.error("edit application error: ", e);
+  }
 };
-export const moveApplication = (status, docId) => async (
-  dispatch,
-  getState
-) => {
-  const userId = getState().auth.user.uid;
-  let appRef = database
-    .collection("users")
-    .doc(`${userId}`)
-    .collection("applications")
-    .doc(docId);
 
-  appRef
-    .update({ status })
-    .then(doc => {
-      console.log("successful move to", status);
-      dispatch({
-        type: "MOVE_APPLICATION",
-        payload: status,
-        id: docId
-      });
-    })
-    .catch(error => {
-      console.log("error", error);
-    });
-};
 export const fetchApplications = () => async (dispatch, getState) => {
   const userId = getState().auth.user.uid;
-  let applications = {};
-  var userApps = database
-    .collection("users")
-    .doc(`${userId}`)
-    .collection("applications")
-    .orderBy("id", "desc");
-  userApps
+  let userRef = database.ref("users");
+  userRef
+    .child(userId)
+    .child("applications")
     .get()
-    .then(function(querySnapshot) {
-      querySnapshot.forEach(function(doc) {
-        applications[doc.id] = doc.data();
-      });
-      dispatch({
-        type: "FETCH_APPLICATIONS",
-        payload: applications
-      });
+    .then(function (applications) {
+      if (applications.exists()) {
+        dispatch({
+          type: "FETCH_APPLICATIONS",
+          payload: applications.val(),
+        });
+      } else {
+        console.log("no data");
+      }
     })
-    .catch(error => {
-      console.log("error", error);
+    .catch(function (error) {
+      console.error("error: ", error);
     });
 };
