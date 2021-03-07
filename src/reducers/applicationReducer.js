@@ -1,11 +1,13 @@
 import _ from "lodash";
-
-export default (state = {}, action) => {
+let initialState = {
+  fetchingApplications: true,
+};
+export default (state = initialState, action) => {
   switch (action.type) {
     case "FETCH_APPLICATION":
       return { ...state, [action.payload.id]: action.payload };
     case "FETCH_APPLICATIONS":
-      return { ...state, ...action.payload };
+      return { ...state, ...action.payload, fetchingApplications: false };
     case "CREATE_APPLICATION":
       return { [action.id]: action.payload, ...state };
     case "EDIT_APPLICATION":

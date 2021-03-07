@@ -7,7 +7,6 @@ import { firebase } from "./firebase/firebase";
 import { login, logout } from "./actions/auth";
 import Loader from "./components/Loader";
 import { LoginPage } from "./components/LoginPage";
-import { fetchApplications } from "./actions/applications";
 import { fetchSettings } from "./actions/userSettings";
 import "./styles/base.css";
 
@@ -24,7 +23,7 @@ const jsxLoggedOut = (
   </Provider>
 );
 
-const renderApp = userLoggedIn => {
+const renderApp = (userLoggedIn) => {
   if (userLoggedIn) {
     ReactDOM.render(jsxLoggedIn, document.querySelector("#root"));
   } else {
@@ -34,14 +33,11 @@ const renderApp = userLoggedIn => {
 
 ReactDOM.render(<Loader />, document.querySelector("#root"));
 
-firebase.auth().onAuthStateChanged(user => {
+firebase.auth().onAuthStateChanged((user) => {
   if (user) {
     store.dispatch(login(user));
     store.dispatch(fetchSettings());
-    //fetch user applications
-    store.dispatch(fetchApplications()).then(() => {
-      renderApp(true);
-    });
+    renderApp(true);
   } else {
     renderApp(false);
     store.dispatch(logout());

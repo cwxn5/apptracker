@@ -1,17 +1,20 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { connect } from "react-redux";
 import AppColumn from "./AppColumn";
 import { columnTypes } from "./columnTypes";
 import { AppPageDiv } from "../../styles/AppPage";
+import { fetchApplications } from "../../actions/applications";
 
-class AppPage extends React.Component {
-  renderColumns() {
-    return columnTypes.map(column => {
+const AppPage = ({ fetchApplications }) => {
+  useEffect(() => {
+    fetchApplications();
+  }, []);
+  const renderColumns = () => {
+    return columnTypes.map((column) => {
       return <AppColumn key={column} title={column} />;
     });
-  }
-  render() {
-    return <AppPageDiv>{this.renderColumns()}</AppPageDiv>;
-  }
-}
+  };
+  return <AppPageDiv>{renderColumns()}</AppPageDiv>;
+};
 
-export default AppPage;
+export default connect(null, { fetchApplications })(AppPage);
