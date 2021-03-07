@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { Switch } from "antd";
+import { Switch, Spin } from "antd";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 
@@ -13,7 +13,7 @@ class AppColumn extends React.Component {
   state = { showCards: false };
   renderAppCards = () => {
     if (this.props.title !== "Rejected" || this.state.showCards) {
-      return this.props.apps.map(app => {
+      return this.props.apps.map((app) => {
         return <AppCard key={app} id={app} />;
       });
     }
@@ -63,7 +63,7 @@ class AppColumn extends React.Component {
             this.props.apps.length > 0
           }
         >
-          {this.renderAppCards()}
+          {this.props.fetchingApplications ? <Spin /> : this.renderAppCards()}
         </Style.AppCardsDiv>
         {this.renderAppCreate()}
       </Style.ColumnDiv>
@@ -78,7 +78,8 @@ const mapStateToProps = (state, ownProps) => {
     ownProps.title
   );
   return {
-    apps: Object.keys(applications)
+    apps: Object.keys(applications),
+    fetchingApplications: state.applications.fetchingApplications,
   };
 };
 

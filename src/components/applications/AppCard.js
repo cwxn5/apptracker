@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { Collapse, Spin } from "antd";
+import { Collapse } from "antd";
 import AppEdit from "./AppForm/AppEdit";
 import AppDelete from "./AppDelete";
 import AppMove from "./AppMove";
@@ -87,11 +87,7 @@ class AppCard extends React.Component {
     return (
       <Style.CollapseWrapper>
         <Panel showArrow={false} header={this.renderCardTitle()}>
-          {this.props.fetchingApplications ? (
-            <Spin />
-          ) : (
-            this.renderCardContent()
-          )}
+          {this.renderCardContent()}
         </Panel>
       </Style.CollapseWrapper>
     );
@@ -101,7 +97,6 @@ class AppCard extends React.Component {
 const mapStateToProps = (state, ownProps) => {
   return {
     application: state.applications[ownProps.id],
-    fetchingApplications: state.applications.fetchingApplications,
   };
 };
 export default connect(mapStateToProps)(AppCard);
