@@ -13,22 +13,13 @@ const applicationReducer = (state = initialState, action) => {
       };
     case "CREATE_APPLICATION":
       return {
-        applications: { ...state.applications, [action.id]: action.payload },
         ...state,
+        applications: { ...state.applications, [action.id]: action.payload },
       };
     case "EDIT_APPLICATION":
       return {
+        ...state,
         applications: { ...state.applications, [action.id]: action.payload },
-        ...state,
-      };
-    case "MOVE_APPLICATION":
-      const app = state[action.id];
-      return {
-        ...state,
-        applications: {
-          ...state.applications,
-          [action.id]: { ...app, status: action.payload },
-        },
       };
     case "DELETE_APPLICATION":
       return {
