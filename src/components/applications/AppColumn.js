@@ -73,7 +73,7 @@ class AppColumn extends React.Component {
 
 const mapStateToProps = (state, ownProps) => {
   const applications = getFilteredApplications(
-    state.applications,
+    state.applications.applications,
     state.filters,
     ownProps.title
   );

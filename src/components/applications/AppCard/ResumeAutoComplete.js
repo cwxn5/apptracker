@@ -19,7 +19,7 @@ class ResumeAutoComplete extends React.Component {
   }
 }
 const mapStateToProps = state => {
-  const resumes = _.compact(_.uniq(_.map(state.applications, "resume")));
+  const resumes = _.compact(_.uniq(_.map(state.applications.applications, "resume")));
   return { resumes };
 };
 export default connect(mapStateToProps)(ResumeAutoComplete);

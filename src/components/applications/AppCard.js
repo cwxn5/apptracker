@@ -96,7 +96,7 @@ class AppCard extends React.Component {
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    application: state.applications[ownProps.id],
+    application: state.applications.applications[ownProps.id],
   };
 };
 export default connect(mapStateToProps)(AppCard);

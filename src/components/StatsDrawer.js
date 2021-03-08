@@ -158,7 +158,7 @@ class StatsDrawer extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    apps: state.applications
+    apps: state.applications.applications
   };
 };
 

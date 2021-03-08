@@ -19,7 +19,7 @@ class LocationAutoComplete extends React.Component {
   }
 }
 const mapStateToProps = state => {
-  const locations = _.uniq(_.map(state.applications, "location"));
+  const locations = _.uniq(_.map(state.applications.applications, "location"));
   return { locations };
 };
 export default connect(mapStateToProps)(LocationAutoComplete);
