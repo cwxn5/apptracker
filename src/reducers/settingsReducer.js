@@ -1,4 +1,4 @@
-export default (state = {}, action) => {
+ const settingsReducer = (state = {}, action) => {
   switch (action.type) {
     case "CREATE_SETTINGS":
       return { ...state, ...action.payload };
@@ -8,3 +8,5 @@ export default (state = {}, action) => {
       return state;
   }
 };
+
+export default settingsReducer;

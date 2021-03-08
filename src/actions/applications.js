@@ -1,4 +1,4 @@
-import { database, fireStore } from "../firebase/firebase";
+import { database } from "../firebase/firebase";
 
 export const createApplication = (formValues) => async (dispatch, getState) => {
   const userId = getState().auth.user.uid;

@@ -1,4 +1,4 @@
-export default (state = {}, action) => {
+const authReducer = (state = {}, action) => {
   switch (action.type) {
     case "LOGIN":
       const { uid, displayName } = action.payload;
@@ -9,3 +9,5 @@ export default (state = {}, action) => {
       return state;
   }
 };
+
+export default authReducer;
