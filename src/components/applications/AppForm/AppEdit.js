@@ -8,8 +8,9 @@ import AppForm from "./AppForm";
 import {
   ModalWrapper,
   TitleDiv,
-  IconButton
+  IconButton,
 } from "../../../styles/ModalWrapper";
+import _ from "lodash";
 
 class AppEdit extends React.Component {
   state = { modalOpen: false };
@@ -35,7 +36,8 @@ class AppEdit extends React.Component {
       </TitleDiv>
     );
   };
-  onSubmit = formValues => {
+  onSubmit = (formValues) => {
+    formValues = { ...formValues, notes: (formValues.notes || "").trim() };
     this.props.editApplication(formValues, this.props.id);
     this.handleClose();
   };
