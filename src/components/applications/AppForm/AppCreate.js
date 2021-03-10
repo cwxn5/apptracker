@@ -67,6 +67,7 @@ class AppCreate extends React.Component {
   onSubmit = formValues => {
     this.props.createApplication({
       ...formValues,
+      notes: (formValues.notes || '').trim(),
       status: `${this.props.status}`
     });
     this.hideModal();
