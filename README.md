@@ -2,6 +2,9 @@
 
 AppTracker allows you to organize your job search. Easily input the necessary information for each job and move and edit as you move through the application process.
 
+
+[![cwxn5](https://circleci.com/gh/cwxn5/apptracker.svg?style=shield)](https://circleci.com/gh/cwxn5/apptracker)
+
 ### Documentation
 
 AppTracker was built using React (bootstrapped with [Create React App](https://github.com/facebook/create-react-app)), React-Redux, and Redux-Thunk.
