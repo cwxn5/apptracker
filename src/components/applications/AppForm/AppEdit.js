@@ -10,7 +10,6 @@ import {
   TitleDiv,
   IconButton,
 } from "../../../styles/ModalWrapper";
-import _ from "lodash";
 
 class AppEdit extends React.Component {
   state = { modalOpen: false };

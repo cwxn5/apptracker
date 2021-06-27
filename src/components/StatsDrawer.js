@@ -1,13 +1,14 @@
 import React from "react";
 import { connect } from "react-redux";
 import _ from "lodash";
-import moment from "moment";
+import moment, { normalizeUnits } from "moment";
 import { Drawer, Statistic } from "antd";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChartBar } from "@fortawesome/free-solid-svg-icons";
 import styled from "styled-components";
 import { device } from "../styles/device";
 import { themes } from "../styles/theme";
+import { Doughnut } from "react-chartjs-2";
 
 const IconWrapper = styled(FontAwesomeIcon)`
   cursor: pointer;
@@ -41,13 +42,13 @@ class StatsDrawer extends React.Component {
   state = { visible: false };
   showDrawer = () => {
     this.setState({
-      visible: true
+      visible: true,
     });
   };
 
   onClose = () => {
     this.setState({
-      visible: false
+      visible: false,
     });
   };
   renderCityStats = () => {
@@ -55,7 +56,6 @@ class StatsDrawer extends React.Component {
       return (
         <StatsWrapper>
           <h2>Cities</h2>
-          <h4>Total-Applied-Interview-Rejected</h4>
           <CitiesColumn>{this.renderCities()}</CitiesColumn>
         </StatsWrapper>
       );
@@ -63,23 +63,57 @@ class StatsDrawer extends React.Component {
   };
   renderCities() {
     const cities = this.getCityStats();
-    return cities.map(city => {
-      let cityapps = _.filter(this.props.apps, { location: city[0] });
-      let status = _.countBy(cityapps, "status");
-      let stats = "" + city[1] + "-";
-      status.Applied ? (stats += status.Applied) : (stats += 0);
-      stats += "-";
-      status.Interview ? (stats += status.Interview) : (stats += 0);
-      stats += "-";
-      status.Rejected ? (stats += status.Rejected) : (stats += 0);
-      return <StatisticColumn key={city[0]} title={city[0]} value={stats} />;
+    return cities.map((cityInfo) => {
+      let cityApps = _.filter(this.props.apps, { location: cityInfo[0] });
+      let status = _.countBy(cityApps, "status");
+      let applied = status.Applied || 0;
+      let interview = status.Interview || 0;
+      let offer = status.Offer || 0;
+      let rejected = status.Rejected || 0;
+      const data = {
+        labels: ["Applied", "Interview", "Offer", "Rejected"],
+        datasets: [
+          {
+            data: [applied, interview, offer, rejected],
+            backgroundColor: [
+              "rgba(54, 162, 235, 1)",
+              "rgba(255, 206, 86, 1)",
+              "rgba(75, 192, 192, 1)",
+              "rgba(255, 99, 132, 1)",
+            ],
+          },
+        ],
+      };
+      const options = {
+        plugins: {
+          legend: {
+            display: false,
+          },
+          title: {
+            display: true,
+            text: cityInfo[0],
+            padding: {
+              top: 10,
+              bottom: 10,
+            },
+            font: {
+              size: 20,
+              family: "'Montserrat', sans-serif",
+              weight: 'normal',
+            },
+            fullSize: true,
+            
+          },
+        },
+      };
+      return <Doughnut data={data} options={options} />;
     });
   }
   getCityStats = () => {
     const locations = Object.entries(
       _.countBy(_.map(this.props.apps, "location"))
     );
-    let sorted = locations.sort(function(a, b) {
+    let sorted = locations.sort(function (a, b) {
       if (a[1] === b[1]) {
         if (a[0] < b[0]) {
           return -1;
@@ -99,7 +133,7 @@ class StatsDrawer extends React.Component {
     let last7days = 0;
     let lastMonth = 0;
     const dates = _.map(this.props.apps, "date");
-    _.forEach(dates, function(date) {
+    _.forEach(dates, function (date) {
       let diff = now.diff(moment(date, "MM-DD-YYYY"), "days");
       if (diff < 31) {
         lastMonth += 1;
@@ -156,9 +190,9 @@ class StatsDrawer extends React.Component {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
-    apps: state.applications.applications
+    apps: state.applications.applications,
   };
 };
 

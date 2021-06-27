@@ -18,6 +18,7 @@ firebase.initializeApp(firebaseConfig);
 if(process.env.NODE_ENV === 'production'){
   firebase.analytics();
 }
+
 const database = firebase.database();
 const fireStore = firebase.firestore();
 
