@@ -22,7 +22,7 @@ const AppPage = ({ fetchApplications }) => {
   };
   if (isMobile) {
     return (
-      <Carousel>
+      <Carousel dotPosition='top'>
         {renderColumns()}
       </Carousel>
     );

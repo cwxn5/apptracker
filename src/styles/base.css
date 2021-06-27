@@ -1,8 +1,13 @@
 * :not(i) {
   font-family: "Montserrat", sans-serif !important;
 }
+
 .ant-carousel .slick-dots-bottom {
   bottom: 0px;
+}
+
+.ant-carousel .slick-dots-top {
+  top: 6px;
 }
 
 .ant-carousel .slick-dots li button {

@@ -10,6 +10,9 @@ export const CardTitleDiv = styled.div`
   justify-content: space-between;
   padding: 0 4px;
   color: ${themes.default.color5};
+  &:hover {
+    opacity: 0.7;
+  }
 `;
 export const CardTitleHeaderCompany = styled.div`
   text-align: right;

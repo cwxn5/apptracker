@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import _ from "lodash";
-import moment, { normalizeUnits } from "moment";
+import moment from "moment";
 import { Drawer, Statistic } from "antd";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChartBar } from "@fortawesome/free-solid-svg-icons";
