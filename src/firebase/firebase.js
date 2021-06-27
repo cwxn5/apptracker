@@ -15,8 +15,9 @@ const firebaseConfig = {
   measurementId: process.env.REACT_APP_FIREBASE_MEASUREMENT_ID
 };
 firebase.initializeApp(firebaseConfig);
-firebase.analytics();
-
+if(process.env.NODE_ENV === 'production'){
+  firebase.analytics();
+}
 const database = firebase.database();
 const fireStore = firebase.firestore();
 

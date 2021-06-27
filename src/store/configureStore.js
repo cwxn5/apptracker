@@ -4,7 +4,7 @@ import reducers from "../reducers";
 
 const composeEnhancers = process.env.NODE_ENV === 'production'
   ? compose
-  : window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__;
+  : window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const configureStore = () => {
   return createStore(reducers, composeEnhancers(applyMiddleware(thunk)));
