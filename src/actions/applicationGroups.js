@@ -1,13 +1,9 @@
 import { database } from "../firebase/firebase";
 import * as AWS from 'aws-sdk'
 
-const configuration = {
-  region: 'us-east-2',
-  secretAccessKey: 'd8W/sS1sEQqVxahnEVO3XHCIN5IgRjFTKy8MHimc',
-  accessKeyId: 'AKIA6HNKWYPU2OQEAYPY'
-}
+import config from '../config/aws'
 
-AWS.config.update(configuration)
+AWS.config.update(config)
 
 const docClient = new AWS.DynamoDB.DocumentClient()
 
