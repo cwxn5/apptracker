@@ -15,6 +15,26 @@ let firebaseConfig = {
   measurementId: process.env.REACT_APP_FIREBASE_MEASUREMENT_ID
 };
 
+firebaseConfig = {
+
+  apiKey: "AIzaSyCy0KCEY36tDAoCH9yufNSSqwg0WC_YDRg",
+
+  authDomain: "apptracker-f817f.firebaseapp.com",
+
+  databaseURL: "https://apptracker-f817f.firebaseio.com",
+
+  projectId: "apptracker-f817f",
+
+  storageBucket: "apptracker-f817f.appspot.com",
+
+  messagingSenderId: "1030155307474",
+
+  appId: "1:1030155307474:web:771ba1fbc5193e5e1fe00b",
+
+  measurementId: "G-ERWN7VKPHY"
+
+};
+
 firebase.initializeApp(firebaseConfig);
 if(process.env.NODE_ENV === 'production'){
   firebase.analytics();

@@ -4,7 +4,7 @@ import { v4 as uuidv4 } from 'uuid';
 
 import config from '../config/aws'
 
-AWS.config.update(config)
+AWS.config.update(config);
 
 const docClient = new AWS.DynamoDB.DocumentClient()
 
@@ -22,7 +22,6 @@ export const createApplication = (formValues) => async (dispatch, getState) => {
     if (err) {
       console.error("Can't add item: ", err);
     } else {
-      console.log("Succeeded adding an item: ", data);
       dispatch({
         type: "CREATE_APPLICATION",
         payload: params.Item,
@@ -34,7 +33,6 @@ export const createApplication = (formValues) => async (dispatch, getState) => {
 export const deleteApplication = (id) => async (dispatch, getState) => {
   try {
     const userId = getState().auth.user.uid;
-    console.log('id: ', id);
     if (userId) {
       const params = {
         TableName: 'applications',
@@ -47,7 +45,6 @@ export const deleteApplication = (id) => async (dispatch, getState) => {
         if (err) {
           console.error("Can't delete item: ", err);
         } else {
-          console.log("Succeeded delete an item: ", data);
           dispatch({
             type: "DELETE_APPLICATION",
             id,
@@ -77,7 +74,6 @@ export const deleteAllApplications = () => async (dispatch, getState) => {
 export const editApplication =
   (formValues) => async (dispatch, getState) => {
     try {
-      console.log('form values:', formValues);
       const generateUpdateQuery = (fields) => {
         let exp = {
           UpdateExpression: 'set',
@@ -87,8 +83,6 @@ export const editApplication =
         Object.entries(fields).forEach(([key, item]) => {
 
           if (!['id', 'userid'].includes(key)) {
-            console.log('key: ', key)
-            console.log(key !== 'id')
             exp.UpdateExpression += ` #${key} = :${key},`;
             exp.ExpressionAttributeNames[`#${key}`] = key;
             exp.ExpressionAttributeValues[`:${key}`] = item
@@ -110,12 +104,10 @@ export const editApplication =
         },
         ...expression
       }
-      console.log(JSON.stringify(params));
       docClient.update(params, function (err, data) {
         if (err) {
           console.log('ERROR: ', JSON.stringify(err))
         } else {
-          console.log('data: ', data)
           dispatch({
             type: "EDIT_APPLICATION",
             payload: formValues,
@@ -130,7 +122,7 @@ export const editApplication =
 
 export const fetchApplications = (applicationGroupName) => async (dispatch, getState) => {
   const userId = getState().auth?.user?.uid;
-  console.log(userId);
+  console.log('config: ', config);
   if (userId) {
     const params = {
       ExpressionAttributeValues: {
@@ -143,7 +135,6 @@ export const fetchApplications = (applicationGroupName) => async (dispatch, getS
       if (err) {
         console.log(JSON.stringify(err, undefined, 2))
       } else {
-        console.log('data: ', data)
         dispatch({
           type: "FETCH_APPLICATIONS",
           payload: data.Items || [],
