@@ -2,11 +2,7 @@ import { database } from "../firebase/firebase";
 import * as AWS from 'aws-sdk'
 import { v4 as uuidv4 } from 'uuid';
 
-const config = {
-  region: 'us-east-2',
-  secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
-  accessKeyId: process.env.AWS_ACCESS_KEY_ID
-}
+import config from '../config/aws';
 
 AWS.config.update(config);
 
