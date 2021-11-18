@@ -122,7 +122,6 @@ export const editApplication =
 
 export const fetchApplications = (applicationGroupName) => async (dispatch, getState) => {
   const userId = getState().auth?.user?.uid;
-  console.log('config: ', config);
   if (userId) {
     const params = {
       ExpressionAttributeValues: {
