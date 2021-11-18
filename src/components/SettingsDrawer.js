@@ -8,7 +8,6 @@ import { device } from "../styles/device";
 import { themes } from "../styles/theme";
 
 import Logout from './Logout';
-import CreateApplicationGroup from "./applicationGroups/createApplicationGroup";
 
 const IconWrapper = styled(FontAwesomeIcon)`
   cursor: pointer;
@@ -28,24 +27,6 @@ class SettingsDrawer extends React.Component {
   showDrawer = () => {
     this.setState({
       visible: true,
-    });
-  };
-  showModal = () => {
-    this.setState({
-      visible: true
-    });
-  };
-
-  handleOk = () => {
-    this.setState({
-      visible: false
-    });
-    this.props.startLogout();
-  };
-
-  handleCancel = () => {
-    this.setState({
-      visible: false
     });
   };
 
@@ -73,10 +54,6 @@ class SettingsDrawer extends React.Component {
           visible={this.state.visible}
           width="300"
         >
-          Test
-          Current Search Name
-          CRUD Search
-          <CreateApplicationGroup />
           <Logout />
         </Drawer>
       </div>

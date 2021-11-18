@@ -6,8 +6,6 @@ import StatsDrawer from "./StatsDrawer";
 import SettingsDrawer from "./SettingsDrawer";
 import Links from "./settings/Links";
 
-import { startLogout } from "../actions/auth";
-
 import * as Style from "../styles/Navbar";
 
 class Header extends React.Component {
@@ -40,4 +38,4 @@ const mapStateToProps = (state = {}) => {
   return { user: state.auth.user };
 };
 
-export default connect(mapStateToProps, { startLogout })(Header);
+export default connect(mapStateToProps)(Header);

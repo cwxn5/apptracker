@@ -1,5 +1,4 @@
 import React from "react";
-import { connect } from "react-redux";
 import { Collapse } from "antd";
 import AppEdit from "./AppForm/AppEdit";
 import AppDelete from "./AppDelete";

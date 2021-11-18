@@ -1,8 +1,11 @@
 import React from "react";
+import { connect } from "react-redux";
 import { Modal } from "antd";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGoogle } from "@fortawesome/free-brands-svg-icons";
 import { faSignOutAlt } from "@fortawesome/free-solid-svg-icons";
+
+import { startLogout } from "../actions/auth";
 
 import * as Style from "../styles/Navbar";
 
@@ -52,4 +55,4 @@ class Logout extends React.Component {
     }
 }
 
-export default Logout;
+export default connect(null, { startLogout })(Logout);
