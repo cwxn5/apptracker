@@ -14,7 +14,7 @@ class AppColumn extends React.Component {
   renderAppCards = () => {
     if (this.props.title !== "Rejected" || this.state.showCards) {
       return this.props.apps.map((app) => {
-        return <AppCard key={app} id={app} />;
+        return <AppCard key={app.id} application={app} />;
       });
     }
   };
@@ -75,10 +75,10 @@ const mapStateToProps = (state, ownProps) => {
   const applications = getFilteredApplications(
     state.applications.applications,
     state.filters,
-    ownProps.title
+    ownProps.title,
   );
   return {
-    apps: Object.keys(applications),
+    apps: applications,
     fetchingApplications: state.applications.fetchingApplications,
   };
 };

@@ -61,11 +61,11 @@ class AppCard extends React.Component {
         <Style.CardButtons>
           <Notes notes={this.props.application.notes} />
           <Style.CardButton>
-            <AppEdit id={this.props.id} application={this.props.application} />
+            <AppEdit id={this.props.application.id} application={this.props.application} />
           </Style.CardButton>
           <Style.CardButton>
             <AppDelete
-              id={this.props.id}
+              id={this.props.application.id}
               application={this.props.application}
             />
           </Style.CardButton>
@@ -94,9 +94,4 @@ class AppCard extends React.Component {
   }
 }
 
-const mapStateToProps = (state, ownProps) => {
-  return {
-    application: state.applications.applications[ownProps.id],
-  };
-};
-export default connect(mapStateToProps)(AppCard);
+export default AppCard;

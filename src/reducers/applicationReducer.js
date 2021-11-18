@@ -1,7 +1,6 @@
-import _ from "lodash";
 let initialState = {
   fetchingApplications: true,
-  applications: {},
+  applications: [],
 };
 const applicationReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -14,20 +13,30 @@ const applicationReducer = (state = initialState, action) => {
     case "CREATE_APPLICATION":
       return {
         ...state,
-        applications: { ...state.applications, [action.id]: action.payload },
+        applications: [...state.applications, action.payload],
       };
     case "EDIT_APPLICATION":
       return {
         ...state,
-        applications: { ...state.applications, [action.id]: action.payload },
+        applications: state.applications.map((item) => {
+          if (item.id !== action.id) {
+            return item
+          }
+          return {
+            ...item,
+            ...action.payload
+          }
+        }),
       };
     case "DELETE_APPLICATION":
       return {
         ...state,
-        applications: _.filter(
-          state.applications,
-          (value, key) => key !== action.id
-        ),
+        applications: state.applications.filter(application => action.id !== application.id)
+      };
+    case "DELETE_ALL_APPLICATIONS":
+      return {
+        ...state,
+        applications: []
       };
     default:
       return state;

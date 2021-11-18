@@ -10,8 +10,7 @@ const { Option } = Select;
 class AppMove extends React.Component {
   handleChange = (value) => {
     this.props.editApplication(
-      { ...this.props.application, status: value },
-      this.props.id
+      { ...this.props.application, status: value }
     );
   };
   renderOptions() {

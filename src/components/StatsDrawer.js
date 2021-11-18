@@ -52,7 +52,7 @@ class StatsDrawer extends React.Component {
     });
   };
   renderCityStats = () => {
-    if (Object.keys(this.props.apps).length) {
+    if (this.props.apps.length) {
       return (
         <StatsWrapper>
           <h2>Cities</h2>
@@ -102,7 +102,7 @@ class StatsDrawer extends React.Component {
               weight: 'normal',
             },
             fullSize: true,
-            
+
           },
         },
       };
@@ -110,9 +110,9 @@ class StatsDrawer extends React.Component {
     });
   }
   getCityStats = () => {
-    const locations = Object.entries(
-      _.countBy(_.map(this.props.apps, "location"))
-    );
+    const locations =
+      Object.entries(_.countBy(this.props.apps, "location"));
+    console.log('locations: ', locations);
     let sorted = locations.sort(function (a, b) {
       if (a[1] === b[1]) {
         if (a[0] < b[0]) {
@@ -157,7 +157,7 @@ class StatsDrawer extends React.Component {
           <StatisticColumn title="Last Month" value={lastMonth} />
           <StatisticColumn
             title="Total"
-            value={Object.keys(this.props.apps).length}
+            value={this.props.apps.length}
           />
         </StatsRow>
       </StatsWrapper>

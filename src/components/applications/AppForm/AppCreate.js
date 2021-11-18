@@ -68,7 +68,8 @@ class AppCreate extends React.Component {
     this.props.createApplication({
       ...formValues,
       notes: (formValues.notes || '').trim(),
-      status: `${this.props.status}`
+      status: `${this.props.status}`,
+      applicationGroup: this.props.applicationGroup || 'DEFAULT',
     });
     this.hideModal();
   };
