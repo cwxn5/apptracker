@@ -13,8 +13,8 @@ class AppColumn extends React.Component {
   state = { showCards: false };
   renderAppCards = () => {
     if (this.props.title !== "Rejected" || this.state.showCards) {
-      return this.props.apps.map((app) => {
-        return <AppCard key={app.id} application={app} />;
+      return this.props.apps.map((app, index) => {
+        return <AppCard key={index} application={app} />;
       });
     }
   };
